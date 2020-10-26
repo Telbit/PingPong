@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:BlahaPong"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Canvas>
+        <Rectangle
+            Width="200" Height="10" Fill="Black" Canvas.Left="300" Canvas.Top="400">
+        </Rectangle>
+        <Ellipse Height="20" Stroke="Black" Fill="Red" Width="20" Canvas.Left="390" Canvas.Top="207" RenderTransformOrigin="7.833,0.852"/>
+    </Canvas>
 </Window>

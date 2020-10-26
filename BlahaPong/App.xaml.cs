@@ -13,5 +13,6 @@ namespace BlahaPong
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }
