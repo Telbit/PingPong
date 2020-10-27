@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BlahaPong.Model;
 
 namespace BlahaPong
 {
@@ -23,6 +24,7 @@ namespace BlahaPong
         public MainWindow()
         {
             InitializeComponent();
+            var paddle = new Paddle(20, 115, 5, 200, 10, this.canv, Key.W, Key.S);
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }
 
