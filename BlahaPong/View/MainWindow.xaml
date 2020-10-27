@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlahaPong"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
+        Title="Bioscigi" Height="450" Width="800" KeyDown="Window_KeyDown">
     <Canvas RenderTransformOrigin="0.491,0.523"
             Name="canv">
         <Rectangle
