@@ -4,7 +4,8 @@ using System.Text;
 
 namespace BlahaPong.Model
 {
-    class Class1
+    class Sprite
     {
+
     }
 }
