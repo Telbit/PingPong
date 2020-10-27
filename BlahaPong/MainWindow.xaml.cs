@@ -23,11 +23,14 @@ namespace BlahaPong
         public MainWindow()
         {
             InitializeComponent();
+            //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }
 
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
 
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            MessageBox.Show($"{this} key: {e.Key}");
         }
     }
 }
