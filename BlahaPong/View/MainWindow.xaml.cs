@@ -34,7 +34,8 @@ namespace BlahaPong
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             Console.WriteLine($"top:{Canvas.GetTop(rect)}");
-            viewModel.KeydownEvent(sender, e, rect);
+            viewModel.KeydownEvent(sender, e, rect, PauseImageTwo);
         }
+
     }
 }
