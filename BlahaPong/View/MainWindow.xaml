@@ -4,13 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlahaPong"
-        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
+        Title="Bioscigi" Height="450" Width="800" KeyDown="Window_KeyDown">
     <Canvas RenderTransformOrigin="0.491,0.523"
             Name="canv">
-        <Rectangle
-            x:Name="rect" Focusable="True"
-            Width="10" Height="200" Fill="Black" Canvas.Left="20" Canvas.Top="115">
-        </Rectangle>
         <Ellipse Height="20" Stroke="Black" Fill="Red" Width="20" Canvas.Left="380" Canvas.Top="197" RenderTransformOrigin="7.833,0.852"/>
+        <!-- <Image Source="/Resources/images/sprite1.png" Height="200" Width="200"/> -->
     </Canvas>
 </Window>
