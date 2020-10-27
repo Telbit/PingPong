@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Page Include="App.xaml" />
-      <Folder Include="View" />
     </ItemGroup>
 
 </Project>
