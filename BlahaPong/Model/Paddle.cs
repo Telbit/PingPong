@@ -27,7 +27,7 @@ namespace BlahaPong.Model
 
         public override void Move(int xDirection, int yDirection)
         {
-            MessageBox.Show("move");
+            Canvas.SetTop(rectangle, Canvas.GetTop(rectangle) + xDirection * speed);
         }
 
         public override void IsOnBorder()

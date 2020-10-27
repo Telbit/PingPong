@@ -21,10 +21,11 @@ namespace BlahaPong
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Paddle paddle;
         public MainWindow()
         {
             InitializeComponent();
-            var paddle = new Paddle(20, 115, 5, 200, 10, this.canv, Key.W, Key.S);
+            paddle = new Paddle(20, 115, 5, 200, 10, this.canv, Key.W, Key.S);
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }
 
@@ -32,7 +33,15 @@ namespace BlahaPong
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show($"{this} key: {e.Key}");
+            if (e.Key == paddle.KeyDown)
+            {
+                paddle.Move(1, 0);
+            }
+            
+            if (e.Key == paddle.KeyUp)
+            {
+                paddle.Move(-1, 0);
+            }
         }
     }
 }
