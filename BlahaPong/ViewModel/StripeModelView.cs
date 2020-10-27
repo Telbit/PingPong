@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BlahaPong.ViewModel
 {
-    class Class1
+    class StripeModelView
     {
     }
 }

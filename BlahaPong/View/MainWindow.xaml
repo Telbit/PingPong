@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Canvas HorizontalAlignment="Center" Height="434" VerticalAlignment="Center" Width="800">
+            <Rectangle x:Name="PaddleOne" Height="171" Canvas.Left="43" Stroke="Black" Canvas.Top="46" Width="19" OpacityMask="#FF060101" KeyDown="PaddleOne_KeyDown"/>
+        </Canvas>
 
     </Grid>
 </Window>

@@ -24,5 +24,10 @@ namespace BlahaPong
         {
             InitializeComponent();
         }
+
+        private void PaddleOne_KeyDown(object sender, KeyEventArgs e)
+        {
+            PaddleOne.RadiusY = PaddleOne.RadiusY - 10;
+        }
     }
 }
