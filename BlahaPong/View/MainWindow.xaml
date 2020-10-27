@@ -9,5 +9,6 @@
     <Canvas RenderTransformOrigin="0.491,0.523"
             Name="canv">
         <Ellipse Height="20" Stroke="Black" Fill="Red" Width="20" Canvas.Left="380" Canvas.Top="197" RenderTransformOrigin="7.833,0.852"/>
+        <!-- <Image Source="/Resources/images/sprite1.png" Height="200" Width="200"/> -->
     </Canvas>
 </Window>

@@ -11,4 +11,9 @@
       <Folder Include="View" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\images\sprite1.png" />
+      <Resource Include="Resources\images\sprite1.png" />
+    </ItemGroup>
+
 </Project>
