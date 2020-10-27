@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlahaPong"
-        mc:Ignorable="d"
         Title="Bioscigi" Height="450" Width="800" KeyDown="Window_KeyDown">
     <Canvas RenderTransformOrigin="0.491,0.523"
             Name="canv">
