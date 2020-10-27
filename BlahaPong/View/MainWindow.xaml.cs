@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BlahaPong.ViewModel;
 
 namespace BlahaPong
 {
@@ -20,17 +21,20 @@ namespace BlahaPong
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel viewModel;
         public MainWindow()
         {
             InitializeComponent();
-            //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
+            viewModel = new MainWindowViewModel();
+            this.DataContext = viewModel;
         }
 
 
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show($"{this} key: {e.Key}");
+            Console.WriteLine($"top:{Canvas.GetTop(rect)}");
+            viewModel.KeydownEvent(sender, e, rect);
         }
     }
 }
