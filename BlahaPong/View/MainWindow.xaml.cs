@@ -13,34 +13,36 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BlahaPong.Model;
+using BlahaPong.ViewModel;
 
 
 namespace BlahaPong
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// <summMainWindow_OnKeyUpaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Paddle paddle;
+        MainWindowViewModel vm = new MainWindowViewModel();
         public MainWindow()
         {
             InitializeComponent();
-            paddle = new Paddle(20, 115, 5, 200, 10, this.canv, Key.W, Key.S);
+            canv.Children.Add(vm.playerOne.Rectangle);
+            canv.Children.Add(vm.playerTwo.Rectangle);
+            canv.Children.Add(vm._ball.BallItem);
+            vm.StartGameLoop();
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }
         
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == paddle.KeyDown)
-            {
-                paddle.Move(1, 0);
-            }
-            
-            if (e.Key == paddle.KeyUp)
-            {
-                paddle.Move(-1, 0);
-            }
+            vm.KeydownEvent(e,0);
+        }
+
+        private int i = 0;
+        private void MainWindow_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            Console.WriteLine(i++);
+            vm.KeyUpEvent(e);
         }
     }
 }
