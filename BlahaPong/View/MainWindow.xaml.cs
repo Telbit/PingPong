@@ -29,6 +29,7 @@ namespace BlahaPong
             canv.Children.Add(vm.playerOne.Rectangle);
             canv.Children.Add(vm.playerTwo.Rectangle);
             canv.Children.Add(vm._ball.BallItem);
+            canv.Children.Add(vm.PauseImage);
             vm.StartGameLoop();
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }

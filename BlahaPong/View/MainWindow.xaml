@@ -9,7 +9,6 @@
         KeyUp="MainWindow_OnKeyUp">
     <Canvas RenderTransformOrigin="0.491,0.523" Name="canv">
         <!-- <Image Source="/Resources/images/sprite1.png" Height="200" Width="200"/> -->
-        <Image x:Name="PauseImageTwo" Height="206" Canvas.Left="46" Canvas.Top="104" Width="708" Visibility="Hidden" Source="/DataSource/pauseTwo.png" />         
-
+        <Image x:Name="PauseImageTwo" Height="206" Canvas.Left="46" Canvas.Top="104" Width="708" Visibility="Hidden" Source="/Resources/pauseTwo.png"/>
     </Canvas>
 </Window>
