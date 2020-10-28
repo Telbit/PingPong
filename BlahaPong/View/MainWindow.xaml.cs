@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BlahaPong.ViewModel;
+using BlahaPong.Model;
+
 
 namespace BlahaPong
 {
@@ -21,17 +22,25 @@ namespace BlahaPong
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel viewModel;
+        private Paddle paddle;
         public MainWindow()
         {
             InitializeComponent();
-            viewModel = new MainWindowViewModel();
-            this.DataContext = viewModel;
+            paddle = new Paddle(20, 115, 5, 200, 10, this.canv, Key.W, Key.S);
+            //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }
         
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            viewModel.KeydownEvent(sender, e, rect, this.Height);
+            if (e.Key == paddle.KeyDown)
+            {
+                paddle.Move(1, 0);
+            }
+            
+            if (e.Key == paddle.KeyUp)
+            {
+                paddle.Move(-1, 0);
+            }
         }
     }
 }
