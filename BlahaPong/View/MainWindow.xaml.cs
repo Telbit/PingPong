@@ -37,11 +37,8 @@ namespace BlahaPong
         {
             vm.KeydownEvent(e,0);
         }
-
-        private int i = 0;
         private void MainWindow_OnKeyUp(object sender, KeyEventArgs e)
         {
-            Console.WriteLine(i++);
             vm.KeyUpEvent(e);
         }
     }

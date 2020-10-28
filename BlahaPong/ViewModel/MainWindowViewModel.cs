@@ -13,6 +13,7 @@ namespace BlahaPong.ViewModel
         public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
         public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
         public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
+        private DispatcherTimer timer;
         public void KeydownEvent(KeyEventArgs e, double botBorder)
         {
             switch (e.Key)
@@ -32,6 +33,9 @@ namespace BlahaPong.ViewModel
                 case Key.Up:
                     playerTwo.Direction = -1;
                     playerTwo.PaddleMove = true;
+                    break;
+                case Key.Space:
+                    timer.IsEnabled = !timer.IsEnabled;
                     break;
             }
         }
@@ -57,7 +61,7 @@ namespace BlahaPong.ViewModel
 
         public void StartGameLoop()
         {
-            DispatcherTimer timer = new DispatcherTimer();
+            timer = new DispatcherTimer();
             timer.Tick += UpdateGame;
             timer.Interval = new TimeSpan(0, 0, 0,0,25);
             timer.Start();
