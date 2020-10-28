@@ -41,5 +41,6 @@ namespace BlahaPong
         {
             vm.KeyUpEvent(e);
         }
+
     }
 }

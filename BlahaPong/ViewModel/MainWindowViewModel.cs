@@ -1,4 +1,5 @@
 ﻿using System;
+﻿using BlahaPong.View;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,8 +15,7 @@ namespace BlahaPong.ViewModel
         public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
         public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
         private DispatcherTimer timer;
-        public void KeydownEvent(KeyEventArgs e, double botBorder)
-        {
+        public void KeydownEvent(KeyEventArgs e, double botBorder){
             switch (e.Key)
             {
                 case Key.W:
@@ -37,9 +37,39 @@ namespace BlahaPong.ViewModel
                 case Key.Space:
                     timer.IsEnabled = !timer.IsEnabled;
                     break;
+                case Key.Escape:
+                    ShowExitMessageBox();
+                    //_exitWindowViwModel.ShowExitWindow();
+                    break;
+                case Key.Space:
+                    if (pauseImage.Visibility == Visibility.Visible)
+                    {
+                        pauseImage.Visibility = Visibility.Hidden;
+                    }else
+                    {
+                        pauseImage.Visibility = Visibility.Visible;
+                    }
+                    //PauseWindowViewModel.GetPauseWindowViewModel().ShowPauseWindow();
+                    break;
             }
         }
+        ExitWindowViewModel _exitWindowViwModel = new ExitWindowViewModel();
+        //PauseWindowViewModel _pauseWindowViwModel = new PauseWindowViewModel();
 
+        public void ShowExitMessageBox()
+        {
+            var result = MessageBox.Show("Do you want to quit ?", "Goodbye?", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    Application.Current.Shutdown();
+                    break;
+                case MessageBoxResult.No:
+
+                    break;
+            }
+        }
+        
         public void KeyUpEvent(KeyEventArgs e)
         {
             switch (e.Key)
