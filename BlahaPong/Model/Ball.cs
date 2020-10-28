@@ -51,18 +51,17 @@ namespace BlahaPong.Model
         private void CollisionCheck()
         {
             CollidePlayer(playerOne);
-            // if ()
-            // {
-            //     xDirection = -xDirection;
-            //     yDirection = -yDirection;
-            // }
+            CollidePlayer(playerTwo);
         }
 
         private void CollidePlayer(Paddle player)
         {
-            if (Canvas.GetTop(playerOne.Rectangle).Equals(Canvas.GetTop(BallItem)) )
+            if (Canvas.GetTop(player.Rectangle) < Canvas.GetTop(BallItem) 
+                && Canvas.GetTop(player.Rectangle) + 200 > Canvas.GetTop(BallItem)
+                && (int) Canvas.GetLeft(player.Rectangle) == (int) Canvas.GetLeft(BallItem))
             {
-                Console.WriteLine($"paddle: {Canvas.GetTop(BallItem)} {Canvas.GetLeft(BallItem)} ball: {Canvas.GetTop(BallItem)} {Canvas.GetLeft(BallItem)}");
+                yDirection = -yDirection;
+                xDirection = player.Direction;
             }
         }
     }
