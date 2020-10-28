@@ -13,7 +13,11 @@ namespace BlahaPong.View
 
         private void OnePlayer(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("1P");
+            
+            MainWindow win = new MainWindow();
+            this.Close();
+            win.Show();
+
         }
         
         private void TwoPlayer(object sender, RoutedEventArgs e)
