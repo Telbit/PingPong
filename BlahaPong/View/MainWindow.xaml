@@ -11,5 +11,6 @@
     <Canvas RenderTransformOrigin="0.491,0.523" Name="canv" Height="450" Width="800">
         <!-- <Image Source="/Resources/images/sprite1.png" Height="200" Width="200"/> -->
         <Image x:Name="PauseImageTwo" Height="206" Canvas.Left="46" Canvas.Top="104" Width="708" Visibility="Hidden" Source="/Resources/pauseTwo.png"/>
+        <TextBox Height="55" Canvas.Left="384" Text=":" TextWrapping="Wrap" Width="29" FontSize="36" HorizontalContentAlignment="Center" IsReadOnly="True" BorderThickness="0"/>
     </Canvas>
 </Window>

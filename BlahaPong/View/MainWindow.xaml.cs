@@ -23,14 +23,11 @@ namespace BlahaPong
     /// </summary>
     public partial class MainWindow : Window
     {
-        MainWindowViewModel vm = new MainWindowViewModel();
+        MainWindowViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
-            canv.Children.Add(vm.playerOne.Rectangle);
-            canv.Children.Add(vm.playerTwo.Rectangle);
-            canv.Children.Add(vm._ball.BallItem);
-            canv.Children.Add(vm.PauseImage);
+            vm = new MainWindowViewModel(canv);
             vm.StartGameLoop();
             vm.SetWindowHeightAndWidth(canv.Height - 10, canv.Width - 10);
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");

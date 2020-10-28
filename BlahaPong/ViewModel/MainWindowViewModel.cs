@@ -16,6 +16,27 @@ namespace BlahaPong.ViewModel
 {
     public class MainWindowViewModel
     {
+
+        public MainWindowViewModel(Canvas canv)
+        {
+            canv.Children.Add(playerOne.Rectangle);
+            canv.Children.Add(playerTwo.Rectangle);
+            canv.Children.Add(_ball.BallItem);
+            canv.Children.Add(PauseImage);
+            canv.Children.Add(PlayerOneScore);
+            canv.Children.Add(PlayerTwoScore);
+        }
+
+        private readonly static int SCORE_BOX_HEIGHT = 45;
+
+        private readonly static int SCORE_BOX_WIDTH = 46;
+
+        private readonly static int SCORE_BOX_FONT_SIZE = 36;
+
+        private readonly static string SCORE_BOX_BASICS_TEXT = "00";
+        
+        private readonly static FontFamily SCORE_BOX_FONT_FAMILY = new FontFamily("Bahnschrift SemiBold");
+
         private double WindowHeight;
         private double WindowWidth;
         public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
@@ -28,12 +49,41 @@ namespace BlahaPong.ViewModel
             this.WindowWidth = width;
         }
 
-        public Image PauseImage { get; } = new Image()
+
+        private TextBox PlayerOneScore { get; set; } = new TextBox() {
+            Height = SCORE_BOX_HEIGHT,
+            Width = SCORE_BOX_WIDTH,
+            Text= SCORE_BOX_BASICS_TEXT,
+            TextWrapping = TextWrapping.Wrap,
+            FontSize = SCORE_BOX_FONT_SIZE,
+            FontFamily = SCORE_BOX_FONT_FAMILY,
+            IsReadOnly = true,
+            BorderThickness = new Thickness(0)
+        };
+        private TextBox PlayerTwoScore { get; set; } = new TextBox() {
+            Height = SCORE_BOX_HEIGHT,
+            Width = SCORE_BOX_WIDTH,
+            Text = SCORE_BOX_BASICS_TEXT,
+            TextWrapping = TextWrapping.Wrap,
+            FontSize = SCORE_BOX_FONT_SIZE,
+            FontFamily = SCORE_BOX_FONT_FAMILY,
+            IsReadOnly = true,
+            BorderThickness = new Thickness(0)
+        };
+
+        private Image PauseImage { get; } = new Image()
         {
             Height = 206,
             Width = 708,
             Visibility = Visibility.Hidden,
-            Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))};
+
+            
+            Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
+        };
+   
+
+           
+
         
         private DispatcherTimer timer;
         public void KeydownEvent(KeyEventArgs e, double botBorder){
@@ -74,6 +124,9 @@ namespace BlahaPong.ViewModel
             }
         }
         ExitWindowViewModel _exitWindowViwModel = new ExitWindowViewModel();
+
+        
+
         //PauseWindowViewModel _pauseWindowViwModel = new PauseWindowViewModel();
 
         public void ShowExitMessageBox()
@@ -114,6 +167,13 @@ namespace BlahaPong.ViewModel
             _ball.SetPlayers(playerOne,playerTwo);
             Canvas.SetLeft(PauseImage, 46);
             Canvas.SetTop(PauseImage, 104);
+            
+            Canvas.SetLeft(PlayerOneScore, 338);
+            Canvas.SetTop(PlayerOneScore, 10);
+            
+            Canvas.SetLeft(PlayerTwoScore, 412);
+            Canvas.SetTop(PlayerTwoScore, 10);
+            
             timer = new DispatcherTimer();
             timer.Tick += UpdateGame;
             timer.Interval = new TimeSpan(0, 0, 0,0,25);
