@@ -5,11 +5,11 @@ namespace BlahaPong.Model
 {
     public class Ball : Sprite
     {
-        public Ball(int xPosition, int yPosition, int speed, int height, int width, Canvas canvas) : base(xPosition, yPosition, speed, height, width, canvas)
+        public Ball(int xPosition, int yPosition, int speed, int height, int width) : base(speed)
         {
         }
 
-        public override void Move(int xDirection, int yDirection)
+        public override void Move()
         {
             MessageBox.Show("move");
         }
