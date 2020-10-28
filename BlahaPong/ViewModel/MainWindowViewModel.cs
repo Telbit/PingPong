@@ -6,6 +6,9 @@ using System.Windows.Input;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using BlahaPong.Model;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace BlahaPong.ViewModel
 {
@@ -14,8 +17,18 @@ namespace BlahaPong.ViewModel
         public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
         public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
         public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
+
+
+        public Image PauseImage { get; } = new Image()
+        {
+            Height = 206,
+            Width = 708,
+            Visibility = Visibility.Hidden,
+            Source = new BitmapImage(new Uri("C:/Users/J/source/repos/c-sharp-pingpong-blahapong/BlahaPong/Resources/pauseTwo.png"))
+        };
+        
         private DispatcherTimer timer;
-        public void KeydownEvent(KeyEventArgs e, double botBorder, Image pauseImage){
+        public void KeydownEvent(KeyEventArgs e, double botBorder){
             switch (e.Key)
             {
                 case Key.W:
@@ -35,15 +48,15 @@ namespace BlahaPong.ViewModel
                     playerTwo.PaddleMove = true;
                     break;
                 case Key.Space:
-                    timer.IsEnabled = !timer.IsEnabled;
-                    if (pauseImage.Visibility == Visibility.Visible)
+                    if (PauseImage.Visibility == Visibility.Visible)
                     {
-                        pauseImage.Visibility = Visibility.Hidden;
+                        PauseImage.Visibility = Visibility.Hidden;
                     }
                     else
                     {
-                        pauseImage.Visibility = Visibility.Visible;
+                        PauseImage.Visibility = Visibility.Visible;
                     }
+                    timer.IsEnabled = !timer.IsEnabled;
                     //PauseWindowViewModel.GetPauseWindowViewModel().ShowPauseWindow();
                     break;
                 case Key.Escape:
@@ -90,6 +103,8 @@ namespace BlahaPong.ViewModel
 
         public void StartGameLoop()
         {
+            Canvas.SetLeft(PauseImage, 46);
+            Canvas.SetTop(PauseImage, 104);
             timer = new DispatcherTimer();
             timer.Tick += UpdateGame;
             timer.Interval = new TimeSpan(0, 0, 0,0,25);
