@@ -15,7 +15,7 @@ namespace BlahaPong.ViewModel
         public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
         public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
         private DispatcherTimer timer;
-        public void KeydownEvent(KeyEventArgs e, double botBorder){
+        public void KeydownEvent(KeyEventArgs e, double botBorder, Image pauseImage){
             switch (e.Key)
             {
                 case Key.W:
@@ -36,21 +36,20 @@ namespace BlahaPong.ViewModel
                     break;
                 case Key.Space:
                     timer.IsEnabled = !timer.IsEnabled;
-                    break;
-                case Key.Escape:
-                    ShowExitMessageBox();
-                    //_exitWindowViwModel.ShowExitWindow();
-                    break;
-                case Key.Space:
                     if (pauseImage.Visibility == Visibility.Visible)
                     {
                         pauseImage.Visibility = Visibility.Hidden;
-                    }else
+                    }
+                    else
                     {
                         pauseImage.Visibility = Visibility.Visible;
                     }
                     //PauseWindowViewModel.GetPauseWindowViewModel().ShowPauseWindow();
                     break;
+                case Key.Escape:
+                    ShowExitMessageBox();
+                    //_exitWindowViwModel.ShowExitWindow();
+                    break;    
             }
         }
         ExitWindowViewModel _exitWindowViwModel = new ExitWindowViewModel();
