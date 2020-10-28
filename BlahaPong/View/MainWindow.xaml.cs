@@ -29,9 +29,7 @@ namespace BlahaPong
             paddle = new Paddle(20, 115, 5, 200, 10, this.canv, Key.W, Key.S);
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }
-
-
-
+        
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == paddle.KeyDown)

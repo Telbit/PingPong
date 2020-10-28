@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlahaPong"
-        Title="Bioscigi" Height="450" Width="800" KeyDown="Window_KeyDown">
+        Title="VanEgyCigid?" Height="450" Width="800" KeyDown="Window_KeyDown">
     <Canvas RenderTransformOrigin="0.491,0.523"
             Name="canv">
         <Ellipse Height="20" Stroke="Black" Fill="Red" Width="20" Canvas.Left="380" Canvas.Top="197" RenderTransformOrigin="7.833,0.852"/>
