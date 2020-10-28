@@ -18,8 +18,7 @@ using BlahaPong.ViewModel;
 
 namespace BlahaPong
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// <summMainWindow_OnKeyUpaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -28,6 +27,7 @@ namespace BlahaPong
         {
             InitializeComponent();
             canv.Children.Add(vm.playerOne.Rectangle);
+            canv.Children.Add(vm.playerTwo.Rectangle);
             canv.Children.Add(vm._ball.BallItem);
             vm.StartGameLoop();
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
@@ -38,6 +38,13 @@ namespace BlahaPong
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             vm.KeydownEvent(e,0);
+        }
+
+        private int i = 0;
+        private void MainWindow_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            Console.WriteLine(i++);
+            vm.KeyUpEvent(e);
         }
     }
 }
