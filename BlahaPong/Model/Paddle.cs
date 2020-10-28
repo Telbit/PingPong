@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -34,7 +35,7 @@ namespace BlahaPong.Model
             if (Canvas.GetTop(Rectangle) < 0 && Direction == -1)
             {
                 return false;
-            } else if (Canvas.GetTop(Rectangle) + Rectangle.Height + 35 > botBorder && Direction == 1)
+            } else if (Canvas.GetTop(Rectangle) + Rectangle.Height > botBorder && Direction == 1)
             {
                 return false;
             }

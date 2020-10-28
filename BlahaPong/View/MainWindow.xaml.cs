@@ -32,12 +32,12 @@ namespace BlahaPong
             canv.Children.Add(vm._ball.BallItem);
             canv.Children.Add(vm.PauseImage);
             vm.StartGameLoop();
+            vm.SetWindowHeight(canv.Height - 10);
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }
         
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            vm.SetWindowHeight(this.Height);
             vm.KeydownEvent(e,0);
         }
         private void MainWindow_OnKeyUp(object sender, KeyEventArgs e)

@@ -119,6 +119,7 @@ namespace BlahaPong.ViewModel
 
         private void UpdateGame(object sender, EventArgs e)
         {
+            _ball.Move(WindowHeight);
             playerOne.Move(WindowHeight);
             playerTwo.Move(WindowHeight);
         }
