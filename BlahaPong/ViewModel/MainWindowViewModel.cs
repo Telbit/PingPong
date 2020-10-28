@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using BlahaPong.View;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using BlahaPong.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Path = System.IO.Path;
 
 namespace BlahaPong.ViewModel
 {
@@ -29,8 +31,7 @@ namespace BlahaPong.ViewModel
             Height = 206,
             Width = 708,
             Visibility = Visibility.Hidden,
-            Source = new BitmapImage(new Uri("C:/Users/tomys/RiderProjects/BlahaPong/BlahaPong/Resources/pauseTwo.png"))
-        };
+            Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))};
         
         private DispatcherTimer timer;
         public void KeydownEvent(KeyEventArgs e, double botBorder){
