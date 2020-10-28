@@ -21,17 +21,24 @@ namespace BlahaPong.Model
             Canvas.SetTop(Rectangle, yPosition);
         }
 
-        public override void Move()
+        public override void Move(double windowHeight)
         {
-            if (PaddleMove)
+            if (PaddleMove && CanMove(windowHeight))
             {
                 Canvas.SetTop(Rectangle, Canvas.GetTop(Rectangle) + Direction * speed);
             }
         }
-
-        public override void IsOnBorder()
+        
+        private bool CanMove(double botBorder)
         {
-            throw new System.NotImplementedException();
+            if (Canvas.GetTop(Rectangle) < 0 && Direction == -1)
+            {
+                return false;
+            } else if (Canvas.GetTop(Rectangle) + Rectangle.Height + 35 > botBorder && Direction == 1)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

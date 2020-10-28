@@ -18,14 +18,10 @@ namespace BlahaPong.Model
             Canvas.SetTop(BallItem, yPosition);
         }
 
-        public override void Move()
+        public override void Move(double windowHeight)
         {
             MessageBox.Show("move");
         }
-
-        public override void IsOnBorder()
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }
 }

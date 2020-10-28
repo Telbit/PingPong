@@ -14,17 +14,22 @@ namespace BlahaPong.ViewModel
 {
     public class MainWindowViewModel
     {
+        private double WindowHeight;
         public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
         public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
         public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
 
+        public void SetWindowHeight(double height)
+        {
+            this.WindowHeight = height;
+        }
 
         public Image PauseImage { get; } = new Image()
         {
             Height = 206,
             Width = 708,
             Visibility = Visibility.Hidden,
-            Source = new BitmapImage(new Uri("C:/Users/J/source/repos/c-sharp-pingpong-blahapong/BlahaPong/Resources/pauseTwo.png"))
+            Source = new BitmapImage(new Uri("C:/Users/tomys/RiderProjects/BlahaPong/BlahaPong/Resources/pauseTwo.png"))
         };
         
         private DispatcherTimer timer;
@@ -113,8 +118,8 @@ namespace BlahaPong.ViewModel
 
         private void UpdateGame(object sender, EventArgs e)
         {
-            playerOne.Move();
-            playerTwo.Move();
+            playerOne.Move(WindowHeight);
+            playerTwo.Move(WindowHeight);
         }
     }
 }

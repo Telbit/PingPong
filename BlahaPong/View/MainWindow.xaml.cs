@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,7 +19,7 @@ using BlahaPong.ViewModel;
 
 namespace BlahaPong
 {
-    /// <summMainWindow_OnKeyUpaction logic for MainWindow.xaml
+    /// <summMainWindow_OnKeyUpaction logic for MainWindow.xaml>
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -36,6 +37,7 @@ namespace BlahaPong
         
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            vm.SetWindowHeight(this.Height);
             vm.KeydownEvent(e,0);
         }
         private void MainWindow_OnKeyUp(object sender, KeyEventArgs e)
