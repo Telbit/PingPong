@@ -4,17 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlahaPong"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
-    <Canvas RenderTransformOrigin="0.491,0.523"
-            Name="canv" KeyDown="Window_KeyDown">
-        <Rectangle
-            x:Name="rect" Focusable="True"
-            Width="10" Height="200" Fill="Black" Canvas.Left="20" Canvas.Top="115">
-        </Rectangle>
-        <Ellipse Height="20" Stroke="Black" Fill="Red" Width="20" Canvas.Left="380" Canvas.Top="197" RenderTransformOrigin="7.833,0.852"/>
-        <Image x:Name="PauseImageTwo" Height="206" Canvas.Left="46" Canvas.Top="104" Width="708" Visibility="Hidden" Source="/DataSource/pauseTwo.png" >
-          
-        </Image>
+        Title="Bioscigi" Height="450" Width="800" 
+        KeyDown="Window_KeyDown"
+        KeyUp="MainWindow_OnKeyUp">
+    <Canvas RenderTransformOrigin="0.491,0.523" Name="canv">
+        <!-- <Image Source="/Resources/images/sprite1.png" Height="200" Width="200"/> -->
+        <Image x:Name="PauseImageTwo" Height="206" Canvas.Left="46" Canvas.Top="104" Width="708" Visibility="Hidden" Source="/DataSource/pauseTwo.png" />         
+
     </Canvas>
 </Window>
