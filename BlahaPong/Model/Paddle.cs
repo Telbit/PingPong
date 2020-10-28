@@ -22,7 +22,7 @@ namespace BlahaPong.Model
             Canvas.SetTop(Rectangle, yPosition);
         }
 
-        public override void Move(double windowHeight)
+        public override void Move(double windowHeight, double windowWidth)
         {
             if (PaddleMove && CanMove(windowHeight))
             {

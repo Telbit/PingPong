@@ -17,13 +17,15 @@ namespace BlahaPong.ViewModel
     public class MainWindowViewModel
     {
         private double WindowHeight;
+        private double WindowWidth;
         public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
         public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
         public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
 
-        public void SetWindowHeight(double height)
+        public void SetWindowHeightAndWidth(double height, double width)
         {
             this.WindowHeight = height;
+            this.WindowWidth = width;
         }
 
         public Image PauseImage { get; } = new Image()
@@ -109,6 +111,7 @@ namespace BlahaPong.ViewModel
 
         public void StartGameLoop()
         {
+            _ball.SetPlayers(playerOne,playerTwo);
             Canvas.SetLeft(PauseImage, 46);
             Canvas.SetTop(PauseImage, 104);
             timer = new DispatcherTimer();
@@ -119,9 +122,9 @@ namespace BlahaPong.ViewModel
 
         private void UpdateGame(object sender, EventArgs e)
         {
-            _ball.Move(WindowHeight);
-            playerOne.Move(WindowHeight);
-            playerTwo.Move(WindowHeight);
+            _ball.Move(WindowHeight, WindowWidth);
+            playerOne.Move(WindowHeight, WindowWidth);
+            playerTwo.Move(WindowHeight, WindowWidth);
         }
     }
 }
