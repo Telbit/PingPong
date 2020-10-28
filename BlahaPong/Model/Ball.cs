@@ -11,6 +11,7 @@ namespace BlahaPong.Model
         public Ellipse BallItem { get; }= new Ellipse();
         private int xDirection;
         private int yDirection;
+        // player references for collision check and later for scores
         private Paddle playerOne;
         private Paddle playerTwo;
         public Ball(int xPosition, int yPosition, int speed, int height, int width) : base(speed)
@@ -33,7 +34,9 @@ namespace BlahaPong.Model
 
         public override void Move(double windowHeight, double windowWidth)
         {
-            CollisionCheck();
+            CollisionCheck(); //Check if players touch the ball
+            
+            // Detect Collision with wall, Score for point should check here 
             if (Canvas.GetTop(this.BallItem) < 0 || Canvas.GetTop(this.BallItem) > windowHeight)
             {
                 xDirection = -xDirection;
@@ -50,17 +53,21 @@ namespace BlahaPong.Model
 
         private void CollisionCheck()
         {
+            //vagy itt
             CollidePlayer(playerOne);
             CollidePlayer(playerTwo);
         }
 
         private void CollidePlayer(Paddle player)
         {
+            // This glorious shit really checks if the ball hit a paddle
             if (Canvas.GetTop(player.Rectangle) < Canvas.GetTop(BallItem) 
                 && Canvas.GetTop(player.Rectangle) + 200 > Canvas.GetTop(BallItem)
                 && (int) Canvas.GetLeft(player.Rectangle) == (int) Canvas.GetLeft(BallItem))
             {
+                // Change the direction of the ball
                 yDirection = -yDirection;
+                // according to the player movement
                 xDirection = player.Direction;
             }
         }
