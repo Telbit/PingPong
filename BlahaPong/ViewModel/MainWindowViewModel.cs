@@ -1,5 +1,6 @@
 ﻿using System;
-﻿using BlahaPong.View;
+using System.Reflection;
+using BlahaPong.View;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,11 +10,13 @@ using BlahaPong.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Path = System.IO.Path;
 
 namespace BlahaPong.ViewModel
 {
     public class MainWindowViewModel
     {
+
         public MainWindowViewModel(Canvas canv)
         {
             canv.Children.Add(playerOne.Rectangle);
@@ -34,9 +37,16 @@ namespace BlahaPong.ViewModel
         
         private readonly static FontFamily SCORE_BOX_FONT_FAMILY = new FontFamily("Bahnschrift SemiBold");
 
-        private Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
-        private Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
-        private Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
+        private double WindowHeight;
+        public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
+        public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
+        public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
+
+        public void SetWindowHeight(double height)
+        {
+            this.WindowHeight = height;
+        }
+
 
         private TextBox PlayerOneScore { get; set; } = new TextBox() {
             Height = SCORE_BOX_HEIGHT,
@@ -64,8 +74,14 @@ namespace BlahaPong.ViewModel
             Height = 206,
             Width = 708,
             Visibility = Visibility.Hidden,
-            Source = new BitmapImage(new Uri("C:/Users/J/source/repos/c-sharp-pingpong-blahapong/BlahaPong/Resources/pause.png"))
+
+            
+            Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
         };
+   
+
+           
+
         
         private DispatcherTimer timer;
         public void KeydownEvent(KeyEventArgs e, double botBorder){
@@ -163,8 +179,8 @@ namespace BlahaPong.ViewModel
 
         private void UpdateGame(object sender, EventArgs e)
         {
-            playerOne.Move();
-            playerTwo.Move();
+            playerOne.Move(WindowHeight);
+            playerTwo.Move(WindowHeight);
         }
     }
 }

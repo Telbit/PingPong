@@ -15,7 +15,6 @@ namespace BlahaPong.Model
             this.speed = speed;
         }
 
-        public abstract void Move();
-        public abstract void IsOnBorder();
+        public abstract void Move(double Height);
     }
 }

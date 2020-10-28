@@ -12,7 +12,23 @@
 
     <ItemGroup>
       <None Remove="Resources\images\sprite1.png" />
+      <None Remove="Resources\menu\credits.png" />
+      <None Remove="Resources\menu\creditsON.png" />
+      <None Remove="Resources\menu\exit.png" />
+      <None Remove="Resources\menu\exitON.png" />
+      <None Remove="Resources\menu\oneplayer.png" />
+      <None Remove="Resources\menu\oneplayer_on.png" />
+      <None Remove="Resources\menu\twoplayer.png" />
+      <None Remove="Resources\menu\twoplayerON.png" />
       <Resource Include="Resources\images\sprite1.png" />
+      <Resource Include="Resources\menu\credits.png" />
+      <Resource Include="Resources\menu\creditsON.png" />
+      <Resource Include="Resources\menu\exit.png" />
+      <Resource Include="Resources\menu\exitON.png" />
+      <Resource Include="Resources\menu\oneplayer.png" />
+      <Resource Include="Resources\menu\oneplayer_on.png" />
+      <Resource Include="Resources\menu\twoplayer.png" />
+      <Resource Include="Resources\menu\twoplayerON.png" />
     </ItemGroup>
 
 </Project>

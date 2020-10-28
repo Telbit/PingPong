@@ -13,7 +13,6 @@ namespace BlahaPong.View
 
         private void OnePlayer(object sender, RoutedEventArgs e)
         {
-            
             MainWindow win = new MainWindow();
             this.Close();
             win.Show();
