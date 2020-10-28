@@ -28,9 +28,7 @@ namespace BlahaPong
             viewModel = new MainWindowViewModel();
             this.DataContext = viewModel;
         }
-
-
-
+        
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             viewModel.KeydownEvent(sender, e, rect, this.Height);
