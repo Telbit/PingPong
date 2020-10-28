@@ -13,7 +13,11 @@ namespace BlahaPong.View
 
         private void OnePlayer(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("1P");
+            
+            MainWindow win = new MainWindow();
+            this.Close();
+            win.Show();
+
         }
         
         private void TwoPlayer(object sender, RoutedEventArgs e)
@@ -23,12 +27,12 @@ namespace BlahaPong.View
         
         private void Credits(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("CRED");
+            MessageBox.Show("BlahaEntertainment Production 2020\n - Bende\n - Dani\n - Tompi");
         }
         
         private void Exit(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("EX");
+            this.Close();
         }
     }
 }

@@ -32,9 +32,7 @@ namespace BlahaPong
             vm.StartGameLoop();
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
         }
-
-
-
+        
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             vm.KeydownEvent(e,0);
