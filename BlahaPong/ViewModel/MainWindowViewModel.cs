@@ -10,7 +10,8 @@ namespace BlahaPong.ViewModel
 {
     public class MainWindowViewModel
     {
-        public Paddle playerOne = new Paddle(20, 115, 5, 200, 10);
+        public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
+        public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
         public void KeydownEvent(KeyEventArgs e, double botBorder)
         {
             switch (e.Key)
@@ -30,7 +31,7 @@ namespace BlahaPong.ViewModel
         {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += UpdateGame;
-            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Interval = new TimeSpan(0, 0, 0,0,100);
             timer.Start();
         }
 
