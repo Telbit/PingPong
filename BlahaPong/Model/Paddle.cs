@@ -8,26 +8,25 @@ namespace BlahaPong.Model
 {
     public class Paddle : Sprite
     {
-        private Rectangle rectangle = new Rectangle();
-        public Key KeyUp { get; }
-        public Key KeyDown { get; }
+        public Rectangle Rectangle {get;} = new Rectangle();
+        public int Direction {get; set;}
+        public bool PaddleMove {get; set;}
 
-        public Paddle(int xPosition, int yPosition, int speed, int height, int width, Canvas canvas, Key keyUp, Key keyDown) : base(xPosition, yPosition, speed, height, width, canvas)
+        public Paddle(int xPosition, int yPosition, int speed, int height, int width) : base(speed)
         {
-            KeyUp = keyUp;
-            KeyDown = keyDown;
-            this.canvas = canvas;
-            rectangle.Fill = Brushes.Black;
-            rectangle.Width = width;
-            rectangle.Height = height;
-            canvas.Children.Add(rectangle);
-            Canvas.SetLeft(rectangle, xPosition);
-            Canvas.SetTop(rectangle, yPosition);
+            Rectangle.Fill = Brushes.Black;
+            Rectangle.Width = width;
+            Rectangle.Height = height;
+            Canvas.SetLeft(Rectangle, xPosition);
+            Canvas.SetTop(Rectangle, yPosition);
         }
 
-        public override void Move(int xDirection, int yDirection)
+        public override void Move()
         {
-            Canvas.SetTop(rectangle, Canvas.GetTop(rectangle) + xDirection * speed);
+            if (PaddleMove)
+            {
+                Canvas.SetTop(Rectangle, Canvas.GetTop(Rectangle) + Direction * speed);
+            }
         }
 
         public override void IsOnBorder()
