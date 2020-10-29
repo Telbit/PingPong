@@ -47,9 +47,9 @@ namespace BlahaPong.ViewModel
         private double WindowHeight;
 
         private double WindowWidth;
-        public Paddle playerOne { get; } = new Paddle(20, 115, 5, 100, 10);
-        public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 100, 10);
-        public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
+        public Paddle playerOne { get; } = new Paddle(20, 115, 10, 100, 10);
+        public Paddle playerTwo { get; } = new Paddle(750, 115, 10, 100, 10);
+        public Ball _ball { get; } = new Ball(380, 197, 10, 20, 20);
 
         public void SetWindowHeightAndWidth(double height, double width)
         {
@@ -152,20 +152,15 @@ namespace BlahaPong.ViewModel
         
         public void KeyUpEvent(KeyEventArgs e)
         {
-            switch (e.Key)
+            if (e.Key == Key.W || e.Key == Key.S)
             {
-                case Key.W:
-                    playerOne.PaddleMove = false;
-                    break;
-                case Key.S:
-                    playerOne.PaddleMove = false;
-                    break;
-                case Key.Down:
-                    playerTwo.PaddleMove = false;
-                    break;
-                case Key.Up:
-                    playerTwo.PaddleMove = false;
-                    break;
+                playerOne.PaddleMove = false;
+                playerOne.Direction = 0;
+            }
+            else if (e.Key == Key.Down || e.Key == Key.Up)
+            {
+                playerTwo.PaddleMove = false;
+                playerTwo.Direction = 0;
             }
         }
 
