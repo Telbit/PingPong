@@ -78,7 +78,9 @@ namespace BlahaPong.ViewModel
             Visibility = Visibility.Hidden,
 
             
-            Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
+            Source = new BitmapImage(new Uri(Path
+                .GetDirectoryName(Assembly.GetExecutingAssembly().Location)?
+                .Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
         };
    
 
