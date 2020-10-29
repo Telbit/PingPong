@@ -233,8 +233,18 @@ namespace BlahaPong.ViewModel
 
         private void AddBall()
         {
-            Ball newBall = new Ball(380, 197, 10, 20, 20);
-            newBall.SetPlayers(playerOne, playerTwo);
+            Ball newBall = new Ball(380, 197, 10, 20, 20, isOnePlayerMode);
+            if (this.isOnePlayerMode)
+            {
+                newBall.SetPlayers(playerOne);
+                newBall.SetPlayerTextBox(PlayerOneScore);
+            }
+            else
+            {
+                newBall.SetPlayers(playerOne, playerTwo);
+                newBall.SetPlayerTextBox(PlayerOneScore, PlayerTwoScore);
+            }
+
             balls.Add(newBall);
             canv.Children.Add(newBall.BallItem);
             tickCounter = 0;
