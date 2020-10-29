@@ -39,8 +39,8 @@ namespace BlahaPong.ViewModel
 
         private double WindowHeight;
         private double WindowWidth;
-        public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
-        public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
+        public Paddle playerOne { get; } = new Paddle(20, 115, 5, 100, 10);
+        public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 100, 10);
         public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
 
         public void SetWindowHeightAndWidth(double height, double width)

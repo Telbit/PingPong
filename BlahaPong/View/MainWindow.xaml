@@ -9,6 +9,9 @@
         KeyUp="MainWindow_OnKeyUp"
         SizeToContent="WidthAndHeight">
     <Canvas RenderTransformOrigin="0.491,0.523" Name="canv" Height="450" Width="800">
+        <Canvas.Background>
+            <ImageBrush ImageSource="C:\Users\tomys\RiderProjects\BlahaPong\BlahaPong\Resources\images\bg.png" Stretch="Fill"/>
+        </Canvas.Background>
         <!-- <Image Source="/Resources/images/sprite1.png" Height="200" Width="200"/> -->
         <Image x:Name="PauseImageTwo" Height="206" Canvas.Left="46" Canvas.Top="104" Width="708" Visibility="Hidden" Source="/Resources/pauseTwo.png"/>
         <TextBox Height="55" Canvas.Left="384" Text=":" TextWrapping="Wrap" Width="29" FontSize="36" HorizontalContentAlignment="Center" IsReadOnly="True" BorderThickness="0"/>

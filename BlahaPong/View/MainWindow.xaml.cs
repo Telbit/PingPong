@@ -30,7 +30,10 @@ namespace BlahaPong
             vm = new MainWindowViewModel(canv);
             vm.StartGameLoop();
             vm.SetWindowHeightAndWidth(canv.Height - 10, canv.Width - 10);
-            //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
+            // ImageBrush ib = new ImageBrush();
+            // ib.ImageSource = new BitmapImage(new Uri("Resources/", UriKind.RelativeOrAbsolute));
+            // canv.Background = ib;
+
         }
         
         private void Window_KeyDown(object sender, KeyEventArgs e)
