@@ -25,12 +25,13 @@ namespace BlahaPong.Model
             Score = 0;
         }
 
-        public override void Move(double windowHeight, double windowWidth)
+        public override bool Move(double windowHeight, double windowWidth)
         {
             if (PaddleMove && CanMove(windowHeight))
             {
                 Canvas.SetTop(Rectangle, Canvas.GetTop(Rectangle) + Direction * speed);
             }
+            return true;
         }
         
         private bool CanMove(double botBorder)

@@ -52,8 +52,8 @@ namespace BlahaPong.Model
             playerOneTextBox = PlayerOne;
             playerTwoTextBox = PlayerTwo;
         }
-
-        public override void Move(double windowHeight, double windowWidth)
+        
+        public override bool Move(double windowHeight, double windowWidth)
         {
             CollisionCheck(); //Check if players touch the ball
             
@@ -69,19 +69,23 @@ namespace BlahaPong.Model
 
                     if (Canvas.GetLeft(this.BallItem) > windowWidth)
                     {
-                        playerOneTextBox.Text = (Int32.Parse(playerOneTextBox.Text) + 1).ToString();
+                        playerOneTextBox.Text = (++playerOne.Score).ToString();
+                        return true;
                     }
                     else
                     {
-                        playerTwoTextBox.Text = (Int32.Parse(playerTwoTextBox.Text) + 1).ToString();
+                        playerTwoTextBox.Text = (++playerTwo.Score).ToString();
+                        return true;
                     }
                 }
                 //Console.WriteLine($"P1: {playerOne.Score}, P2: {playerTwo.Score}");
                 yDirection = -yDirection;
+                // nextRound();
             }
 
             Canvas.SetTop(BallItem, Canvas.GetTop(BallItem) + xDirection * speed);
             Canvas.SetLeft(BallItem, Canvas.GetLeft(BallItem) + yDirection * speed);
+            return false;
         }
 
         private void CollisionCheck()
@@ -103,7 +107,7 @@ namespace BlahaPong.Model
                 yDirection = -yDirection;
                 // according to the player movement
                 xDirection = player.Direction;
-                if (isOnePlayerMode) playerOneTextBox.Text = (Int32.Parse(playerOneTextBox.Text) + 1).ToString();
+                if (isOnePlayerMode) playerOneTextBox.Text = (++playerOne.Score).ToString();
             }
         }
     }
