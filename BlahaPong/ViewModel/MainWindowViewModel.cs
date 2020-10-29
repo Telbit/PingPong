@@ -32,7 +32,7 @@ namespace BlahaPong.ViewModel
             
 
             ImageBrush ib = new ImageBrush();
-            ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\images\bg.png") ?? throw new InvalidOperationException()));
+            ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\images\tablebackground.png") ?? throw new InvalidOperationException()));
             canv.Background = ib;
             
             if (!isOnePlayerMode)
@@ -69,7 +69,8 @@ namespace BlahaPong.ViewModel
 
         private double WindowWidth;
         public Paddle playerOne { get; } = new Paddle(20, 115, 10, 100, 10, true);
-        public Paddle playerTwo { get; } = new Paddle(750, 115, 10, 100, 10, false);
+        public Paddle playerTwo { get; } = new Paddle(770, 115, 10, 100, 10, false);
+
         private List<Ball> balls = new List<Ball>();
         public Ball _ball { get; } 
 
