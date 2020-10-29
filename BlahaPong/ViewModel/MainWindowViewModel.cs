@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using BlahaPong.View;
 using System.Windows;
@@ -8,6 +9,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using BlahaPong.Model;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Path = System.IO.Path;
@@ -16,6 +18,7 @@ namespace BlahaPong.ViewModel
 {
     public class MainWindowViewModel
     {
+        private Canvas canv;
 
         public MainWindowViewModel(Canvas canv, Boolean isOnePlayerMode)
         {
@@ -30,9 +33,12 @@ namespace BlahaPong.ViewModel
             canv.Children.Add(PauseImage);
             canv.Children.Add(PlayerOneScore);
             canv.Children.Add(PlayerTwoScore);
+            this.canv = canv;
+            balls.Add(_ball);
         }
 
         private bool isOnePlayerMode;
+        private int tickCounter = 0;
 
         private readonly static int SCORE_BOX_HEIGHT = 45;
 
@@ -49,6 +55,7 @@ namespace BlahaPong.ViewModel
         public Paddle playerOne { get; } = new Paddle(20, 115, 10, 100, 10);
         public Paddle playerTwo { get; } = new Paddle(750, 115, 10, 100, 10);
         public Ball _ball { get; } = new Ball(380, 197, 10, 20, 20);
+        private List<Ball> balls = new List<Ball>();
 
         public void SetWindowHeightAndWidth(double height, double width)
         {
@@ -190,9 +197,47 @@ namespace BlahaPong.ViewModel
 
         private void UpdateGame(object sender, EventArgs e)
         {
-            _ball.Move(WindowHeight, WindowWidth);
+            ++tickCounter;
+            if (tickCounter >= 40 * 10 || balls.Count == 0)
+            {
+                AddBall();
+            }
+            
+            // just test
+            if (playerOne.Score + playerTwo.Score == 5)
+            {
+                NextRound();
+                playerOne.Score = 0;
+                playerTwo.Score = 0;
+            }
+            
+            foreach (var ball in balls)
+            {
+                ball.Move(WindowHeight, WindowWidth);
+            }
+            
             playerOne.Move(WindowHeight, WindowWidth);
             playerTwo.Move(WindowHeight, WindowWidth);
+           
+        }
+
+        private void AddBall()
+        {
+            Ball newBall = new Ball(380, 197, 10, 20, 20);
+            newBall.SetPlayers(playerOne, playerTwo);
+            balls.Add(newBall);
+            canv.Children.Add(newBall.BallItem);
+            tickCounter = 0;
+        }
+        public void NextRound()
+        {
+            foreach (var ball in balls)
+            {
+                canv.Children.Remove(ball.BallItem);
+            }
+            balls.Clear();
+            tickCounter = 0;
+            Thread.Sleep(2000);
         }
     }
 }
