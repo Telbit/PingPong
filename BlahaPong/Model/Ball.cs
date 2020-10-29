@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
+
 
 namespace BlahaPong.Model
 {
@@ -19,14 +23,19 @@ namespace BlahaPong.Model
         private TextBox playerTwoTextBox;
 
         private bool isOnePlayerMode;
+
+        ImageBrush ib = new ImageBrush();
         public Ball(int xPosition, int yPosition, int speed, int height, int width, bool isOnePlayerMode) : base(speed)
         {
+            ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\ccedited.png") ?? throw new InvalidOperationException()));
+
             xDirection = -1;
             yDirection = 1;
             BallItem.Fill = Brushes.Red;
             BallItem.Stroke = Brushes.Black;
             BallItem.Width = width;
             BallItem.Height = height;
+            BallItem.Fill = ib;
             Canvas.SetLeft(BallItem, xPosition);
             Canvas.SetTop(BallItem, yPosition);
             this.isOnePlayerMode = isOnePlayerMode;
