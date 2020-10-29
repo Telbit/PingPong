@@ -15,13 +15,13 @@ namespace BlahaPong.View
 
         private void OnePlayer(object sender, RoutedEventArgs e)
         {
-            _mainMenuViewModel.StartOnePlayerMode(this);
+            _mainMenuViewModel.StartGame(this, true);
 
         }
         
         private void TwoPlayer(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("2P");
+            _mainMenuViewModel.StartGame(this, false);
         }
         
         private void Credits(object sender, RoutedEventArgs e)

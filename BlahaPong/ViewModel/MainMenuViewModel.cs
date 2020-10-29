@@ -8,10 +8,10 @@ namespace BlahaPong.ViewModel
     class MainMenuViewModel
     {
 
-        public void StartOnePlayerMode(Window menu)
+        public void StartGame(Window menu, bool isOnePlayerMode)
         {
 
-            MainWindow win = new MainWindow(true);
+            MainWindow win = new MainWindow(isOnePlayerMode);
             menu.Close();
             win.Show();
         }

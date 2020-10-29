@@ -19,26 +19,33 @@ namespace BlahaPong.ViewModel
     public class MainWindowViewModel
     {
         private Canvas canv;
-
-        public MainWindowViewModel(Canvas canv, Boolean isOnePlayerMode)
+        private int tickCounter = 0;
+        private bool isOnePlayerMode;
+        public MainWindowViewModel(Canvas canv, bool isOnePlayerMode,  TextBox ScoreSeparator)
         {
+            this.isOnePlayerMode = isOnePlayerMode;
+
+            _ball = new Ball(380, 197, 10, 20, 20, isOnePlayerMode);
+
             ImageBrush ib = new ImageBrush();
             ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\images\bg.png") ?? throw new InvalidOperationException()));
             canv.Background = ib;
             
-
+            if (!isOnePlayerMode)
+            {
+                ScoreSeparator.Visibility = Visibility.Visible;
+                canv.Children.Add(playerTwo.Rectangle);
+                canv.Children.Add(PlayerTwoScore);
+            }
+            
             canv.Children.Add(playerOne.Rectangle);
-            canv.Children.Add(playerTwo.Rectangle);
+            
             canv.Children.Add(_ball.BallItem);
             canv.Children.Add(PauseImage);
             canv.Children.Add(PlayerOneScore);
-            canv.Children.Add(PlayerTwoScore);
             this.canv = canv;
             balls.Add(_ball);
         }
-
-        private bool isOnePlayerMode;
-        private int tickCounter = 0;
 
         private readonly static int SCORE_BOX_HEIGHT = 45;
 
@@ -51,11 +58,12 @@ namespace BlahaPong.ViewModel
         private readonly static FontFamily SCORE_BOX_FONT_FAMILY = new FontFamily("Bahnschrift SemiBold");
 
         private double WindowHeight;
+
         private double WindowWidth;
         public Paddle playerOne { get; } = new Paddle(20, 115, 10, 100, 10);
         public Paddle playerTwo { get; } = new Paddle(750, 115, 10, 100, 10);
-        public Ball _ball { get; } = new Ball(380, 197, 10, 20, 20);
         private List<Ball> balls = new List<Ball>();
+        public Ball _ball { get; } 
 
         public void SetWindowHeightAndWidth(double height, double width)
         {
@@ -97,9 +105,6 @@ namespace BlahaPong.ViewModel
             Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
         };
    
-
-           
-
         
         private DispatcherTimer timer;
         public void KeydownEvent(KeyEventArgs e, double botBorder){
@@ -173,12 +178,18 @@ namespace BlahaPong.ViewModel
             }
         }
 
-        public void StartGameLoop(Boolean isOnePLayerMode)
+        public void StartGameLoop()
         {
+            if (!isOnePlayerMode)
+            {
+                _ball.SetPlayerTextBox(PlayerOneScore, PlayerTwoScore);
+                _ball.SetPlayers(playerOne, playerTwo);
+                Canvas.SetLeft(PlayerTwoScore, 412);
+                Canvas.SetTop(PlayerTwoScore, 10);
+            }
 
-            this.isOnePlayerMode = isOnePLayerMode;
-
-            _ball.SetPlayers(playerOne,playerTwo);
+            _ball.SetPlayers(playerOne);
+            _ball.SetPlayerTextBox(PlayerOneScore);
 
             Canvas.SetLeft(PauseImage, 46);
             Canvas.SetTop(PauseImage, 104);
@@ -186,8 +197,7 @@ namespace BlahaPong.ViewModel
             Canvas.SetLeft(PlayerOneScore, 338);
             Canvas.SetTop(PlayerOneScore, 10);
             
-            Canvas.SetLeft(PlayerTwoScore, 412);
-            Canvas.SetTop(PlayerTwoScore, 10);
+            
             
             timer = new DispatcherTimer();
             timer.Tick += UpdateGame;
@@ -217,7 +227,7 @@ namespace BlahaPong.ViewModel
             }
             
             playerOne.Move(WindowHeight, WindowWidth);
-            playerTwo.Move(WindowHeight, WindowWidth);
+            if (!isOnePlayerMode) playerTwo.Move(WindowHeight, WindowWidth);
            
         }
 
