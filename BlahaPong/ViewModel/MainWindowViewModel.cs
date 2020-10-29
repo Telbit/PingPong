@@ -226,9 +226,15 @@ namespace BlahaPong.ViewModel
             
             foreach (var ball in balls)
             {
-                if (ball.Move(WindowHeight, WindowWidth))
+                if (!ball.Move(WindowHeight, WindowWidth))
                 {
                     NextRound();
+                    if (isOnePlayerMode)
+                    {
+                        playerOne.Score = 0;
+                        PlayerOneScore.Text = "0";
+                    }
+
                     break;
                 }
             }

@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Resources\ccedited.png" />
       <None Remove="Resources\continue.png" />
       <None Remove="Resources\exitwindow\continue.png" />
       <None Remove="Resources\exitwindow\continueON.png" />
@@ -26,6 +27,7 @@
       <None Remove="Resources\menu\oneplayer_on.png" />
       <None Remove="Resources\menu\twoplayer.png" />
       <None Remove="Resources\menu\twoplayerON.png" />
+      <Resource Include="Resources\ccedited.png" />
       <Resource Include="Resources\exitwindow\continue.png" />
       <Resource Include="Resources\exitwindow\continueON.png" />
       <Resource Include="Resources\exitwindow\mainmenu.png" />
