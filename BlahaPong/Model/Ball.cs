@@ -72,7 +72,8 @@ namespace BlahaPong.Model
             // This glorious shit really checks if the ball hit a paddle
             if (Canvas.GetTop(player.Rectangle) < Canvas.GetTop(BallItem) 
                 && Canvas.GetTop(player.Rectangle) + player.Rectangle.Height > Canvas.GetTop(BallItem)
-                && (int) Canvas.GetLeft(player.Rectangle) == (int) Canvas.GetLeft(BallItem))
+                && ((int) Canvas.GetLeft(player.Rectangle) == (int) Canvas.GetLeft(BallItem) - (int) BallItem.Width/2
+                    || (int) Canvas.GetLeft(player.Rectangle) == (int) Canvas.GetLeft(BallItem) + (int) BallItem.Width/2))
             {
                 // Change the direction of the ball
                 yDirection = -yDirection;
