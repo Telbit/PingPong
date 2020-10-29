@@ -29,6 +29,7 @@ namespace BlahaPong.ViewModel
             _mainWindow = mainWindow;
 
             _ball = new Ball(380, 197, 10, 20, 20, isOnePlayerMode);
+            
 
             ImageBrush ib = new ImageBrush();
             ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\images\bg.png") ?? throw new InvalidOperationException()));
@@ -263,7 +264,7 @@ namespace BlahaPong.ViewModel
             }
             balls.Clear();
             tickCounter = 0;
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
         }
 
     }
