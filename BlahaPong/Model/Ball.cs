@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -17,12 +18,17 @@ namespace BlahaPong.Model
 
         private Paddle playerTwo;
         private TextBox playerTwoTextBox;
+        private List<int> xCoords = new List<int>(){-1, 0, 1};
+        private List<int> yCoords = new List<int>(){-1, 1};
+        private Random rand = new Random();
 
         private bool isOnePlayerMode;
         public Ball(int xPosition, int yPosition, int speed, int height, int width, bool isOnePlayerMode) : base(speed)
         {
-            xDirection = -1;
-            yDirection = 1;
+            int RandXi = rand.Next(xCoords.Count);
+            xDirection = xCoords[RandXi];
+            int RandYi = rand.Next(yCoords.Count);
+            yDirection = yCoords[RandYi];
             BallItem.Fill = Brushes.Red;
             BallItem.Stroke = Brushes.Black;
             BallItem.Width = width;
@@ -70,14 +76,19 @@ namespace BlahaPong.Model
                     if (Canvas.GetLeft(this.BallItem) > windowWidth)
                     {
                         playerOneTextBox.Text = (++playerOne.Score).ToString();
-                        return true;
+                        return false;
                     }
                     else
                     {
                         playerTwoTextBox.Text = (++playerTwo.Score).ToString();
-                        return true;
+                        return false;
                     }
                 }
+                else if (Canvas.GetLeft(this.BallItem) <= 0)
+                {
+                    return false;
+                }
+
                 //Console.WriteLine($"P1: {playerOne.Score}, P2: {playerTwo.Score}");
                 yDirection = -yDirection;
                 // nextRound();
@@ -85,7 +96,7 @@ namespace BlahaPong.Model
 
             Canvas.SetTop(BallItem, Canvas.GetTop(BallItem) + xDirection * speed);
             Canvas.SetLeft(BallItem, Canvas.GetLeft(BallItem) + yDirection * speed);
-            return false;
+            return true;
         }
 
         private void CollisionCheck()
