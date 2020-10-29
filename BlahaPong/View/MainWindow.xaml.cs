@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BlahaPong.Model;
 using BlahaPong.ViewModel;
+using Path = System.IO.Path;
 
 
 namespace BlahaPong
@@ -24,15 +26,15 @@ namespace BlahaPong
     public partial class MainWindow : Window
     {
         MainWindowViewModel vm;
-        public MainWindow()
+        public MainWindow(bool isOnePlayerMode)
         {
             InitializeComponent();
-            vm = new MainWindowViewModel(canv);
+            vm = new MainWindowViewModel(canv, isOnePlayerMode, ScoreSeparator);
             vm.StartGameLoop();
+            //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
+           
             vm.SetWindowHeightAndWidth(canv.Height - 10, canv.Width - 10);
-            // ImageBrush ib = new ImageBrush();
-            // ib.ImageSource = new BitmapImage(new Uri("Resources/", UriKind.RelativeOrAbsolute));
-            // canv.Background = ib;
+           
 
         }
         
