@@ -17,7 +17,7 @@ namespace BlahaPong.ViewModel
     public class MainWindowViewModel
     {
 
-        public MainWindowViewModel(Canvas canv)
+        public MainWindowViewModel(Canvas canv, Boolean isOnePlayerMode)
         {
             canv.Children.Add(playerOne.Rectangle);
             canv.Children.Add(playerTwo.Rectangle);
@@ -27,13 +27,15 @@ namespace BlahaPong.ViewModel
             canv.Children.Add(PlayerTwoScore);
         }
 
+        private bool isOnePlayerMode;
+
         private readonly static int SCORE_BOX_HEIGHT = 45;
 
         private readonly static int SCORE_BOX_WIDTH = 46;
 
         private readonly static int SCORE_BOX_FONT_SIZE = 36;
 
-        private readonly static string SCORE_BOX_BASICS_TEXT = "00";
+        private readonly static string SCORE_BOX_BASICS_TEXT = "0";
         
         private readonly static FontFamily SCORE_BOX_FONT_FAMILY = new FontFamily("Bahnschrift SemiBold");
 
@@ -56,7 +58,9 @@ namespace BlahaPong.ViewModel
             FontSize = SCORE_BOX_FONT_SIZE,
             FontFamily = SCORE_BOX_FONT_FAMILY,
             IsReadOnly = true,
-            BorderThickness = new Thickness(0)
+            BorderThickness = new Thickness(0),
+            TextAlignment = TextAlignment.Center,
+            Background = Brushes.Transparent
         };
         private TextBox PlayerTwoScore { get; set; } = new TextBox() {
             Height = SCORE_BOX_HEIGHT,
@@ -66,7 +70,9 @@ namespace BlahaPong.ViewModel
             FontSize = SCORE_BOX_FONT_SIZE,
             FontFamily = SCORE_BOX_FONT_FAMILY,
             IsReadOnly = true,
-            BorderThickness = new Thickness(0)
+            BorderThickness = new Thickness(0),
+            TextAlignment = TextAlignment.Center,
+            Background = Brushes.Transparent
         };
 
         private Image PauseImage { get; } = new Image()
@@ -74,8 +80,6 @@ namespace BlahaPong.ViewModel
             Height = 206,
             Width = 708,
             Visibility = Visibility.Hidden,
-
-            
             Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
         };
    
@@ -160,8 +164,10 @@ namespace BlahaPong.ViewModel
             }
         }
 
-        public void StartGameLoop()
+        public void StartGameLoop(Boolean isOnePLayerMode)
         {
+            this.isOnePlayerMode = isOnePLayerMode;
+
             Canvas.SetLeft(PauseImage, 46);
             Canvas.SetTop(PauseImage, 104);
             

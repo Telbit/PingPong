@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlahaPong.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -6,6 +7,7 @@ namespace BlahaPong.View
 {
     public partial class MainMenu : Window
     {
+        private MainMenuViewModel _mainMenuViewModel = new MainMenuViewModel();
         public MainMenu()
         {
             InitializeComponent();
@@ -13,9 +15,7 @@ namespace BlahaPong.View
 
         private void OnePlayer(object sender, RoutedEventArgs e)
         {
-            MainWindow win = new MainWindow();
-            this.Close();
-            win.Show();
+            _mainMenuViewModel.StartOnePlayerMode(this);
 
         }
         
