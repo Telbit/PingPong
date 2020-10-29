@@ -45,6 +45,7 @@ namespace BlahaPong.ViewModel
         private readonly static FontFamily SCORE_BOX_FONT_FAMILY = new FontFamily("Bahnschrift SemiBold");
 
         private double WindowHeight;
+
         private double WindowWidth;
         public Paddle playerOne { get; } = new Paddle(20, 115, 5, 100, 10);
         public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 100, 10);
@@ -90,9 +91,6 @@ namespace BlahaPong.ViewModel
             Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
         };
    
-
-           
-
         
         private DispatcherTimer timer;
         public void KeydownEvent(KeyEventArgs e, double botBorder){
@@ -177,6 +175,7 @@ namespace BlahaPong.ViewModel
             this.isOnePlayerMode = isOnePLayerMode;
 
             _ball.SetPlayers(playerOne,playerTwo);
+            _ball.SetPlayerTextBox(PlayerOneScore, PlayerTwoScore);
 
             Canvas.SetLeft(PauseImage, 46);
             Canvas.SetTop(PauseImage, 104);

@@ -13,7 +13,10 @@ namespace BlahaPong.Model
         private int yDirection;
         // player references for collision check and later for scores
         private Paddle playerOne;
+        private TextBox playerOneTextBox;
+
         private Paddle playerTwo;
+        private TextBox playerTwoTextBox;
         public Ball(int xPosition, int yPosition, int speed, int height, int width) : base(speed)
         {
             xDirection = -1;
@@ -32,6 +35,17 @@ namespace BlahaPong.Model
             this.playerTwo = playerTwo;
         }
 
+        public void SetPlayerTextBox(TextBox PlayerOne)
+        {
+            playerOneTextBox = PlayerOne;
+        }
+
+        public void SetPlayerTextBox(TextBox PlayerOne, TextBox PlayerTwo)
+        {
+            playerOneTextBox = PlayerOne;
+            playerTwoTextBox = PlayerTwo;
+        }
+
         public override void Move(double windowHeight, double windowWidth)
         {
             CollisionCheck(); //Check if players touch the ball
@@ -46,11 +60,11 @@ namespace BlahaPong.Model
             {
                 if (Canvas.GetLeft(this.BallItem) > windowWidth)
                 {
-                    playerOne.Score += 1;
+                    playerOneTextBox.Text = (Int32.Parse(playerOneTextBox.Text) + 1).ToString();
                 }
                 else
                 {
-                    playerTwo.Score += 1;
+                    playerTwoTextBox.Text = (Int32.Parse(playerTwoTextBox.Text) + 1).ToString();
                 }
 
                 Console.WriteLine($"P1: {playerOne.Score}, P2: {playerTwo.Score}");
