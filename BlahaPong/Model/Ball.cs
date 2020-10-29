@@ -17,7 +17,9 @@ namespace BlahaPong.Model
 
         private Paddle playerTwo;
         private TextBox playerTwoTextBox;
-        public Ball(int xPosition, int yPosition, int speed, int height, int width) : base(speed)
+
+        private bool isOnePlayerMode;
+        public Ball(int xPosition, int yPosition, int speed, int height, int width, bool isOnePlayerMode) : base(speed)
         {
             xDirection = -1;
             yDirection = 1;
@@ -27,12 +29,17 @@ namespace BlahaPong.Model
             BallItem.Height = height;
             Canvas.SetLeft(BallItem, xPosition);
             Canvas.SetTop(BallItem, yPosition);
+            this.isOnePlayerMode = isOnePlayerMode;
         }
 
         public void SetPlayers( Paddle playerOne, Paddle playerTwo)
         {
             this.playerOne = playerOne;
             this.playerTwo = playerTwo;
+        }
+        public void SetPlayers( Paddle playerOne)
+        {
+            this.playerOne = playerOne;
         }
 
         public void SetPlayerTextBox(TextBox PlayerOne)
@@ -58,16 +65,18 @@ namespace BlahaPong.Model
 
             if (Canvas.GetLeft(this.BallItem) < 0 || Canvas.GetLeft(this.BallItem) > windowWidth)
             {
-                if (Canvas.GetLeft(this.BallItem) > windowWidth)
-                {
-                    playerOneTextBox.Text = (Int32.Parse(playerOneTextBox.Text) + 1).ToString();
-                }
-                else
-                {
-                    playerTwoTextBox.Text = (Int32.Parse(playerTwoTextBox.Text) + 1).ToString();
-                }
+                if (!isOnePlayerMode){
 
-                Console.WriteLine($"P1: {playerOne.Score}, P2: {playerTwo.Score}");
+                    if (Canvas.GetLeft(this.BallItem) > windowWidth)
+                    {
+                        playerOneTextBox.Text = (Int32.Parse(playerOneTextBox.Text) + 1).ToString();
+                    }
+                    else
+                    {
+                        playerTwoTextBox.Text = (Int32.Parse(playerTwoTextBox.Text) + 1).ToString();
+                    }
+                }
+                //Console.WriteLine($"P1: {playerOne.Score}, P2: {playerTwo.Score}");
                 yDirection = -yDirection;
             }
 
@@ -78,7 +87,8 @@ namespace BlahaPong.Model
         private void CollisionCheck()
         {
             CollidePlayer(playerOne);
-            CollidePlayer(playerTwo);
+            if (!isOnePlayerMode) CollidePlayer(playerTwo);
+
         }
 
         private void CollidePlayer(Paddle player)
@@ -92,6 +102,7 @@ namespace BlahaPong.Model
                 yDirection = -yDirection;
                 // according to the player movement
                 xDirection = player.Direction;
+                if (isOnePlayerMode) playerOneTextBox.Text = (Int32.Parse(playerOneTextBox.Text) + 1).ToString();
             }
         }
     }

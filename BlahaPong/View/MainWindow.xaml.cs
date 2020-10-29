@@ -26,11 +26,11 @@ namespace BlahaPong
     public partial class MainWindow : Window
     {
         MainWindowViewModel vm;
-        public MainWindow(Boolean isOnePlayerMode)
+        public MainWindow(bool isOnePlayerMode)
         {
             InitializeComponent();
-            vm = new MainWindowViewModel(canv, isOnePlayerMode);
-            vm.StartGameLoop(isOnePlayerMode);
+            vm = new MainWindowViewModel(canv, isOnePlayerMode, ScoreSeparator);
+            vm.StartGameLoop();
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
            
             vm.SetWindowHeightAndWidth(canv.Height - 10, canv.Width - 10);
