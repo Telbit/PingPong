@@ -19,6 +19,11 @@ namespace BlahaPong.ViewModel
 
         public MainWindowViewModel(Canvas canv, Boolean isOnePlayerMode)
         {
+            ImageBrush ib = new ImageBrush();
+            ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\images\bg.png") ?? throw new InvalidOperationException()));
+            canv.Background = ib;
+            
+
             canv.Children.Add(playerOne.Rectangle);
             canv.Children.Add(playerTwo.Rectangle);
             canv.Children.Add(_ball.BallItem);
@@ -40,13 +45,15 @@ namespace BlahaPong.ViewModel
         private readonly static FontFamily SCORE_BOX_FONT_FAMILY = new FontFamily("Bahnschrift SemiBold");
 
         private double WindowHeight;
-        public Paddle playerOne { get; } = new Paddle(20, 115, 5, 200, 10);
-        public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 200, 10);
+        private double WindowWidth;
+        public Paddle playerOne { get; } = new Paddle(20, 115, 5, 100, 10);
+        public Paddle playerTwo { get; } = new Paddle(750, 115, 5, 100, 10);
         public Ball _ball { get; } = new Ball(380, 197, 5, 20, 20);
 
-        public void SetWindowHeight(double height)
+        public void SetWindowHeightAndWidth(double height, double width)
         {
             this.WindowHeight = height;
+            this.WindowWidth = width;
         }
 
 
@@ -166,7 +173,10 @@ namespace BlahaPong.ViewModel
 
         public void StartGameLoop(Boolean isOnePLayerMode)
         {
+
             this.isOnePlayerMode = isOnePLayerMode;
+
+            _ball.SetPlayers(playerOne,playerTwo);
 
             Canvas.SetLeft(PauseImage, 46);
             Canvas.SetTop(PauseImage, 104);
@@ -185,8 +195,9 @@ namespace BlahaPong.ViewModel
 
         private void UpdateGame(object sender, EventArgs e)
         {
-            playerOne.Move(WindowHeight);
-            playerTwo.Move(WindowHeight);
+            _ball.Move(WindowHeight, WindowWidth);
+            playerOne.Move(WindowHeight, WindowWidth);
+            playerTwo.Move(WindowHeight, WindowWidth);
         }
     }
 }

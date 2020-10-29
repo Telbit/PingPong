@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -12,6 +13,8 @@ namespace BlahaPong.Model
         public int Direction {get; set;}
         public bool PaddleMove {get; set;}
 
+        public int Score { get; set;}
+
         public Paddle(int xPosition, int yPosition, int speed, int height, int width) : base(speed)
         {
             Rectangle.Fill = Brushes.Black;
@@ -19,9 +22,10 @@ namespace BlahaPong.Model
             Rectangle.Height = height;
             Canvas.SetLeft(Rectangle, xPosition);
             Canvas.SetTop(Rectangle, yPosition);
+            Score = 0;
         }
 
-        public override void Move(double windowHeight)
+        public override void Move(double windowHeight, double windowWidth)
         {
             if (PaddleMove && CanMove(windowHeight))
             {
@@ -34,7 +38,7 @@ namespace BlahaPong.Model
             if (Canvas.GetTop(Rectangle) < 0 && Direction == -1)
             {
                 return false;
-            } else if (Canvas.GetTop(Rectangle) + Rectangle.Height + 35 > botBorder && Direction == 1)
+            } else if (Canvas.GetTop(Rectangle) + Rectangle.Height > botBorder && Direction == 1)
             {
                 return false;
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BlahaPong.Model;
 using BlahaPong.ViewModel;
+using Path = System.IO.Path;
 
 
 namespace BlahaPong
@@ -30,11 +32,14 @@ namespace BlahaPong
             vm = new MainWindowViewModel(canv, isOnePlayerMode);
             vm.StartGameLoop(isOnePlayerMode);
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
+           
+            vm.SetWindowHeightAndWidth(canv.Height - 10, canv.Width - 10);
+           
+
         }
         
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            vm.SetWindowHeight(this.Height);
             vm.KeydownEvent(e,0);
         }
         private void MainWindow_OnKeyUp(object sender, KeyEventArgs e)
