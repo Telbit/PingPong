@@ -11,6 +11,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Resources\continue.png" />
+      <None Remove="Resources\exitwindow\continue.png" />
+      <None Remove="Resources\exitwindow\continueON.png" />
+      <None Remove="Resources\exitwindow\mainmenu.png" />
+      <None Remove="Resources\exitwindow\mainmenuON.png" />
       <None Remove="Resources\images\bg.png" />
       <None Remove="Resources\images\sprite1.png" />
       <None Remove="Resources\menu\credits.png" />
@@ -21,6 +26,10 @@
       <None Remove="Resources\menu\oneplayer_on.png" />
       <None Remove="Resources\menu\twoplayer.png" />
       <None Remove="Resources\menu\twoplayerON.png" />
+      <Resource Include="Resources\exitwindow\continue.png" />
+      <Resource Include="Resources\exitwindow\continueON.png" />
+      <Resource Include="Resources\exitwindow\mainmenu.png" />
+      <Resource Include="Resources\exitwindow\mainmenuON.png" />
       <Resource Include="Resources\images\bg.png" />
       <Resource Include="Resources\images\sprite1.png" />
       <Resource Include="Resources\menu\credits.png" />

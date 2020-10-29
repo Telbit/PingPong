@@ -17,9 +17,12 @@ namespace BlahaPong.ViewModel
     public class MainWindowViewModel
     {
         private bool isOnePlayerMode;
-        public MainWindowViewModel(Canvas canv, bool isOnePlayerMode,  TextBox ScoreSeparator)
+
+        private MainWindow _mainWindow;
+        public MainWindowViewModel(Canvas canv, bool isOnePlayerMode,  TextBox ScoreSeparator, MainWindow mainWindow)
         {
             this.isOnePlayerMode = isOnePlayerMode;
+            _mainWindow = mainWindow;
 
             _ball = new Ball(380, 197, 10, 20, 20, isOnePlayerMode);
 
@@ -42,7 +45,8 @@ namespace BlahaPong.ViewModel
             
         }
 
-       
+
+        ExitWindowViewModel _exitWindowViwModel;
 
         private readonly static int SCORE_BOX_HEIGHT = 45;
 
@@ -135,12 +139,13 @@ namespace BlahaPong.ViewModel
                     //PauseWindowViewModel.GetPauseWindowViewModel().ShowPauseWindow();
                     break;
                 case Key.Escape:
-                    ShowExitMessageBox();
-                    //_exitWindowViwModel.ShowExitWindow();
+                    //ShowExitMessageBox();
+                    _exitWindowViwModel = ExitWindowViewModel.GetExitWindowViewModel(timer, _mainWindow);
+                    _exitWindowViwModel.ShowExitWindow(timer);
                     break;    
             }
         }
-        ExitWindowViewModel _exitWindowViwModel = new ExitWindowViewModel();
+         
 
         
 

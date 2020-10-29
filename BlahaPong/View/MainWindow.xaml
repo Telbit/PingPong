@@ -7,7 +7,8 @@
         Title="Bioscigi" 
         KeyDown="Window_KeyDown"
         KeyUp="MainWindow_OnKeyUp"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+        
     <Canvas RenderTransformOrigin="0.491,0.523" Name="canv" Height="450" Width="800">
         <!-- <Image Source="/Resources/images/sprite1.png" Height="200" Width="200"/> -->
         <Image x:Name="PauseImageTwo" Height="206" Canvas.Left="46" Canvas.Top="104" Width="708" Visibility="Hidden" Source="/Resources/pauseTwo.png"/>

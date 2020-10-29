@@ -29,7 +29,7 @@ namespace BlahaPong
         public MainWindow(bool isOnePlayerMode)
         {
             InitializeComponent();
-            vm = new MainWindowViewModel(canv, isOnePlayerMode, ScoreSeparator);
+            vm = new MainWindowViewModel(canv, isOnePlayerMode, ScoreSeparator, this);
             vm.StartGameLoop();
             //rect.PreviewMouseLeftButtonDown += (sender, args) MessageBox.Show("Yo mamma");
            

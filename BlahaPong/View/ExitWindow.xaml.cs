@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace BlahaPong.View
 {
@@ -18,21 +19,27 @@ namespace BlahaPong.View
     /// </summary>
     public partial class ExitWindow : Window
     {
-        ExitWindowViewModel _exitWindowViewModel = new ExitWindowViewModel();
-        public ExitWindow()
+        ExitWindowViewModel _exitWindowViewModel; 
+        public ExitWindow(ExitWindowViewModel exitWindowViewModel)
         {
             InitializeComponent();
-            this.DataContext = _exitWindowViewModel;
+            _exitWindowViewModel = exitWindowViewModel;
+
         }
 
-        private void YesButton_Click(object sender, RoutedEventArgs e)
+        private void ContinueButton_Click(object sender, RoutedEventArgs e)
         {
-            _exitWindowViewModel.YesButtonClick();
+            _exitWindowViewModel.ContinueButtonClick();
         }
 
-        private void NoButton_Click(object sender, RoutedEventArgs e)
+        private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            _exitWindowViewModel.NoButtonClick();
+            _exitWindowViewModel.MainMenuButtonClick();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

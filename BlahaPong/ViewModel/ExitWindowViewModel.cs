@@ -4,31 +4,55 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace BlahaPong.ViewModel
 {
     public class ExitWindowViewModel
     {
         private Window _exitWindow;
+        private DispatcherTimer timer;
+        private MainWindow _mainWindow;
+        public static ExitWindowViewModel _exitWindowViewModel = null;
 
-        private Window GetExitWindow()
+        public ExitWindowViewModel(DispatcherTimer timer, MainWindow mainWindow)
         {
-            return _exitWindow = new ExitWindow();
+            this.timer = timer;
+            _mainWindow = mainWindow;
         }
 
-        public void YesButtonClick()
+        public static ExitWindowViewModel GetExitWindowViewModel(DispatcherTimer timer, MainWindow mainWindow)
         {
-            Application.Current.Shutdown();
+            if (_exitWindowViewModel == null)
+            {
+                return _exitWindowViewModel = new ExitWindowViewModel(timer, mainWindow);
+            }
+            return _exitWindowViewModel;
         }
 
-        public void NoButtonClick()
+        public void ContinueButtonClick()
         {
             _exitWindow.Close();
+            timer.IsEnabled = !timer.IsEnabled;
         }
 
-        public void ShowExitWindow()
+        public void MainMenuButtonClick()
         {
-            GetExitWindow().Show();
+         
+            MainMenu mainMenu = new MainMenu();
+            _exitWindow.Close();
+            _mainWindow.Close();
+            mainMenu.Show();
+        }
+
+
+        public void ShowExitWindow(DispatcherTimer timer)
+        {
+            this.timer = timer;
+            timer.IsEnabled = !timer.IsEnabled;
+            ExitWindow exitWindow = new ExitWindow(this);
+            this._exitWindow = exitWindow;
+            exitWindow.Show();
         }
 
     }
