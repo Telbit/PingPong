@@ -213,17 +213,13 @@ namespace BlahaPong.ViewModel
                 AddBall();
             }
             
-            // just test
-            if (playerOne.Score + playerTwo.Score == 5)
-            {
-                NextRound();
-                playerOne.Score = 0;
-                playerTwo.Score = 0;
-            }
-            
             foreach (var ball in balls)
             {
-                ball.Move(WindowHeight, WindowWidth);
+                if (ball.Move(WindowHeight, WindowWidth))
+                {
+                    NextRound();
+                    break;
+                }
             }
             
             playerOne.Move(WindowHeight, WindowWidth);
@@ -259,5 +255,6 @@ namespace BlahaPong.ViewModel
             tickCounter = 0;
             Thread.Sleep(2000);
         }
+
     }
 }
