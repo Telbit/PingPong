@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace BlahaPong.Model
 {
@@ -15,11 +18,25 @@ namespace BlahaPong.Model
 
         public int Score { get; set;}
 
-        public Paddle(int xPosition, int yPosition, int speed, int height, int width) : base(speed)
+        ImageBrush ib = new ImageBrush();
+
+
+
+        public Paddle(int xPosition, int yPosition, int speed, int height, int width, bool isPlayerOne) : base(speed)
         {
+            if (isPlayerOne)
+            {
+                ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\images\atesz.png") ?? throw new InvalidOperationException()));
+            }
+            else
+            {
+                ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\images\lacitwo.png") ?? throw new InvalidOperationException()));
+            }
+
             Rectangle.Fill = Brushes.Black;
             Rectangle.Width = width;
             Rectangle.Height = height;
+            Rectangle.Fill = ib;
             Canvas.SetLeft(Rectangle, xPosition);
             Canvas.SetTop(Rectangle, yPosition);
             Score = 0;

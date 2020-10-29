@@ -68,8 +68,8 @@ namespace BlahaPong.ViewModel
         private double WindowHeight;
 
         private double WindowWidth;
-        public Paddle playerOne { get; } = new Paddle(20, 115, 10, 100, 10);
-        public Paddle playerTwo { get; } = new Paddle(750, 115, 10, 100, 10);
+        public Paddle playerOne { get; } = new Paddle(20, 115, 10, 100, 10, true);
+        public Paddle playerTwo { get; } = new Paddle(750, 115, 10, 100, 10, false);
         private List<Ball> balls = new List<Ball>();
         public Ball _ball { get; } 
 
