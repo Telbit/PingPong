@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using BlahaPong.View;
 using System.Windows;
@@ -8,6 +9,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using BlahaPong.Model;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Path = System.IO.Path;
@@ -16,6 +18,8 @@ namespace BlahaPong.ViewModel
 {
     public class MainWindowViewModel
     {
+        private Canvas canv;
+        private int tickCounter = 0;
         private bool isOnePlayerMode;
 
         private MainWindow _mainWindow;
@@ -42,11 +46,13 @@ namespace BlahaPong.ViewModel
             canv.Children.Add(_ball.BallItem);
             canv.Children.Add(PauseImage);
             canv.Children.Add(PlayerOneScore);
-            
+            this.canv = canv;
+            balls.Add(_ball);
         }
 
 
         ExitWindowViewModel _exitWindowViwModel;
+
 
         private readonly static int SCORE_BOX_HEIGHT = 45;
 
@@ -63,6 +69,7 @@ namespace BlahaPong.ViewModel
         private double WindowWidth;
         public Paddle playerOne { get; } = new Paddle(20, 115, 10, 100, 10);
         public Paddle playerTwo { get; } = new Paddle(750, 115, 10, 100, 10);
+        private List<Ball> balls = new List<Ball>();
         public Ball _ball { get; } 
 
         public void SetWindowHeightAndWidth(double height, double width)
@@ -101,8 +108,10 @@ namespace BlahaPong.ViewModel
         {
             Height = 206,
             Width = 708,
-            Visibility = Visibility.Hidden,
-            Source = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
+            Visibility = Visibility.Hidden, 
+            Source = new BitmapImage(new Uri(Path
+                .GetDirectoryName(Assembly.GetExecutingAssembly().Location)?
+                .Replace(@"bin\Debug\netcoreapp3.1", @"Resources\pauseTwo.png") ?? throw new InvalidOperationException()))
         };
    
         
@@ -208,11 +217,57 @@ namespace BlahaPong.ViewModel
 
         private void UpdateGame(object sender, EventArgs e)
         {
-            _ball.Move(WindowHeight, WindowWidth);
+            ++tickCounter;
+            if (tickCounter >= 40 * 10 || balls.Count == 0)
+            {
+                AddBall();
+            }
+            
+            // just test
+            if (playerOne.Score + playerTwo.Score == 5)
+            {
+                NextRound();
+                playerOne.Score = 0;
+                playerTwo.Score = 0;
+            }
+            
+            foreach (var ball in balls)
+            {
+                ball.Move(WindowHeight, WindowWidth);
+            }
+            
             playerOne.Move(WindowHeight, WindowWidth);
-
             if (!isOnePlayerMode) playerTwo.Move(WindowHeight, WindowWidth);
+           
+        }
 
+        private void AddBall()
+        {
+            Ball newBall = new Ball(380, 197, 10, 20, 20, isOnePlayerMode);
+            if (this.isOnePlayerMode)
+            {
+                newBall.SetPlayers(playerOne);
+                newBall.SetPlayerTextBox(PlayerOneScore);
+            }
+            else
+            {
+                newBall.SetPlayers(playerOne, playerTwo);
+                newBall.SetPlayerTextBox(PlayerOneScore, PlayerTwoScore);
+            }
+
+            balls.Add(newBall);
+            canv.Children.Add(newBall.BallItem);
+            tickCounter = 0;
+        }
+        public void NextRound()
+        {
+            foreach (var ball in balls)
+            {
+                canv.Children.Remove(ball.BallItem);
+            }
+            balls.Clear();
+            tickCounter = 0;
+            Thread.Sleep(2000);
         }
     }
 }
