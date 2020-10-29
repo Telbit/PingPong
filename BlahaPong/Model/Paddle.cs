@@ -13,6 +13,8 @@ namespace BlahaPong.Model
         public int Direction {get; set;}
         public bool PaddleMove {get; set;}
 
+        public int Score { get; set;}
+
         public Paddle(int xPosition, int yPosition, int speed, int height, int width) : base(speed)
         {
             Rectangle.Fill = Brushes.Black;
@@ -20,6 +22,7 @@ namespace BlahaPong.Model
             Rectangle.Height = height;
             Canvas.SetLeft(Rectangle, xPosition);
             Canvas.SetTop(Rectangle, yPosition);
+            Score = 0;
         }
 
         public override void Move(double windowHeight, double windowWidth)
