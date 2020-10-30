@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:BlahaPong.View"
         mc:Ignorable="d"
-        Title="VanEgyCigid?" Height="346" Width="555" WindowStartupLocation="CenterScreen">
+        Title="PingPongMadness" Height="346" Width="555" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <ImageBrush x:Key="oneplayer_hover" ImageSource="../Resources/menu/oneplayer_on.png" Stretch="UniformToFill"></ImageBrush>

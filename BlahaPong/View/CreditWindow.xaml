@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlahaPong.View"
         mc:Ignorable="d"
-        Title="CreditWindow" Height="520" Width="801" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" >
+        WindowState="Maximized"
+        Title="CreditWindow" Height="520" Width="801" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
     <Grid Margin="10,10,266,136">
-        <MediaElement x:Name="creditVideo" Source="Resources/credits.mp4"  Stretch="Fill" Margin="0,0,-261,-149" LoadedBehavior="Play"/>
+        <MediaElement x:Name="creditVideo" Source="Resources/credits.mp4" Stretch="Fill" Margin="0,0,-261,-149" LoadedBehavior="Play"/>
     </Grid>
 </Window>

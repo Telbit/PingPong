@@ -53,6 +53,8 @@
       <Resource Include="Resources\menu\oneplayer_on.png" />
       <Resource Include="Resources\menu\twoplayer.png" />
       <Resource Include="Resources\menu\twoplayerON.png" />
+      <None Remove="Resources\creditsmusic.mp3" />
+      <Resource Include="Resources\creditsmusic.mp3" />
     </ItemGroup>
 
     <ItemGroup>
