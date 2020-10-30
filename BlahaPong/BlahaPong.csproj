@@ -55,6 +55,10 @@
       <Resource Include="Resources\menu\twoplayerON.png" />
       <None Remove="Resources\creditsmusic.mp3" />
       <Resource Include="Resources\creditsmusic.mp3" />
+      <None Remove="Resources\images\heroes.png" />
+      <Resource Include="Resources\images\heroes.png" />
+      <None Remove="Resources\images\tablebackground.png" />
+      <Resource Include="Resources\images\tablebackground.png" />
     </ItemGroup>
 
     <ItemGroup>
