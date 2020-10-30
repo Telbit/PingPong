@@ -26,7 +26,10 @@ namespace BlahaPong.View
         
         private void Credits(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("BlahaEntertainment Production 2020\n - Bende\n - Dani\n - Tompi");
+            CreditWindow creditWindow = new CreditWindow();
+            this.Close();
+            creditWindow.Show();
+            
         }
         
         private void Exit(object sender, RoutedEventArgs e)
