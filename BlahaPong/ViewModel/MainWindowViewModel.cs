@@ -261,14 +261,13 @@ namespace BlahaPong.ViewModel
                 if (gift.IsActive)
                 {
                     canv.Children.Remove(gift.Rectangle);
-                    Console.WriteLine(gift.ActiveTime);
-                    if (gift.ActiveTime >= 40 * 5)
+                    if (gift.ActiveTime >= 40 * 7)
                     {
                         gift.GiftDeactivation();
                         gifts.Remove(gift);
                         break;
                     }
-                    if (!(gift.ActiveTime >= 40 * 5))
+                    if (!(gift.ActiveTime >= 40 * 7))
                     {
                         gift.ActiveTime++;
                     }
@@ -316,7 +315,9 @@ namespace BlahaPong.ViewModel
             {
                 canv.Children.Remove(gift.Rectangle);
             }
-            
+
+            playerOne.Rectangle.Height = 100;
+            playerTwo.Rectangle.Height = 100;
             gifts.Clear();
             balls.Clear();
             Thread.Sleep(2000);
