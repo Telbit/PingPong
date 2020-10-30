@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:BlahaPong.View"
         mc:Ignorable="d"
-        Title="VanEgyCigid?" Height="346" Width="500" WindowStartupLocation="CenterScreen">
+        Title="PingPongMadness" Height="346" Width="555" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ImageBrush x:Key="oneplayer_hover" ImageSource="../Resources/menu/oneplayer_on.png" Stretch="UniformToFill"></ImageBrush>
         <ImageBrush x:Key="twoplayer_hover" ImageSource="../Resources/menu/twoplayerON.png" Stretch="UniformToFill"></ImageBrush>
@@ -212,6 +212,9 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush x:Name="menu_background" ImageSource="../Resources/images/heroes.png" Stretch="Uniform"></ImageBrush>
+    </Window.Background>
     <StackPanel HorizontalAlignment="Center" Width="352" VerticalAlignment="Center">
         <Button Style="{DynamicResource oneplayer}" Width="208" Height="60" Click="OnePlayer" FontSize="40"  Visibility="Visible" BorderBrush="{x:Null}" BorderThickness="0">
             <Button.Background>

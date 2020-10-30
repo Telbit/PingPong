@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Reflection;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
+
 
 namespace BlahaPong.Model
 {
@@ -18,16 +23,28 @@ namespace BlahaPong.Model
         private Paddle playerTwo;
         private TextBox playerTwoTextBox;
         public Paddle LastTouchedPlayer { get; set; }
+        private List<int> xCoords = new List<int>(){-1, 0, 1};
+        private List<int> yCoords = new List<int>(){-1, 1};
+        private Random rand = new Random();
 
         private bool isOnePlayerMode;
+
+        ImageBrush ib = new ImageBrush();
         public Ball(int xPosition, int yPosition, int speed, int height, int width, bool isOnePlayerMode) : base(speed)
         {
+            ib.ImageSource = new BitmapImage(new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.Replace(@"bin\Debug\netcoreapp3.1", @"Resources\ccedited.png") ?? throw new InvalidOperationException()));
+
             xDirection = -1;
             yDirection = 1;
+            int RandXi = rand.Next(xCoords.Count);
+            xDirection = xCoords[RandXi];
+            int RandYi = rand.Next(yCoords.Count);
+            yDirection = yCoords[RandYi];
             BallItem.Fill = Brushes.Red;
             BallItem.Stroke = Brushes.Black;
             BallItem.Width = width;
             BallItem.Height = height;
+            BallItem.Fill = ib;
             Canvas.SetLeft(BallItem, xPosition);
             Canvas.SetTop(BallItem, yPosition);
             this.isOnePlayerMode = isOnePlayerMode;
@@ -71,14 +88,19 @@ namespace BlahaPong.Model
                     if (Canvas.GetLeft(this.BallItem) > windowWidth)
                     {
                         playerOneTextBox.Text = (++playerOne.Score).ToString();
-                        return true;
+                        return false;
                     }
                     else
                     {
                         playerTwoTextBox.Text = (++playerTwo.Score).ToString();
-                        return true;
+                        return false;
                     }
                 }
+                else if (Canvas.GetLeft(this.BallItem) <= 0)
+                {
+                    return false;
+                }
+
                 //Console.WriteLine($"P1: {playerOne.Score}, P2: {playerTwo.Score}");
                 yDirection = -yDirection;
                 // nextRound();
@@ -86,7 +108,7 @@ namespace BlahaPong.Model
 
             Canvas.SetTop(BallItem, Canvas.GetTop(BallItem) + xDirection * speed);
             Canvas.SetLeft(BallItem, Canvas.GetLeft(BallItem) + yDirection * speed);
-            return false;
+            return true;
         }
 
         private void CollisionCheck()

@@ -11,13 +11,19 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="platform\laci.png" />
+      <None Remove="Resources\ccedited.png" />
       <None Remove="Resources\continue.png" />
+      <None Remove="Resources\credits.mp4" />
       <None Remove="Resources\exitwindow\continue.png" />
       <None Remove="Resources\exitwindow\continueON.png" />
       <None Remove="Resources\exitwindow\mainmenu.png" />
       <None Remove="Resources\exitwindow\mainmenuON.png" />
       <None Remove="Resources\images\bg.png" />
+      <None Remove="Resources\images\heroes.png" />
+      <None Remove="Resources\images\lacitwo.png" />
       <None Remove="Resources\images\sprite1.png" />
+      <None Remove="Resources\images\tablebackground.png" />
       <None Remove="Resources\menu\credits.png" />
       <None Remove="Resources\menu\creditsON.png" />
       <None Remove="Resources\menu\exit.png" />
@@ -26,12 +32,19 @@
       <None Remove="Resources\menu\oneplayer_on.png" />
       <None Remove="Resources\menu\twoplayer.png" />
       <None Remove="Resources\menu\twoplayerON.png" />
+      <Resource Include="Resources\ccedited.png" />
+      <Content Include="Resources\credits.mp4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Resource Include="Resources\exitwindow\continue.png" />
       <Resource Include="Resources\exitwindow\continueON.png" />
       <Resource Include="Resources\exitwindow\mainmenu.png" />
       <Resource Include="Resources\exitwindow\mainmenuON.png" />
       <Resource Include="Resources\images\bg.png" />
+      <Resource Include="Resources\images\heroes.png" />
+      <Resource Include="Resources\images\lacitwo.png" />
       <Resource Include="Resources\images\sprite1.png" />
+      <Resource Include="Resources\images\tablebackground.png" />
       <Resource Include="Resources\menu\credits.png" />
       <Resource Include="Resources\menu\creditsON.png" />
       <Resource Include="Resources\menu\exit.png" />
@@ -40,6 +53,12 @@
       <Resource Include="Resources\menu\oneplayer_on.png" />
       <Resource Include="Resources\menu\twoplayer.png" />
       <Resource Include="Resources\menu\twoplayerON.png" />
+      <None Remove="Resources\creditsmusic.mp3" />
+      <Resource Include="Resources\creditsmusic.mp3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="platform\" />
     </ItemGroup>
 
 </Project>
