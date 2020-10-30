@@ -212,6 +212,9 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush x:Name="menu_background" ImageSource="../Resources/images/heroes.png" Stretch="Uniform"></ImageBrush>
+    </Window.Background>
     <StackPanel HorizontalAlignment="Center" Width="352" VerticalAlignment="Center">
         <Button Style="{DynamicResource oneplayer}" Width="208" Height="60" Click="OnePlayer" FontSize="40"  Visibility="Visible" BorderBrush="{x:Null}" BorderThickness="0">
             <Button.Background>

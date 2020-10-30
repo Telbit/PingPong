@@ -42,6 +42,10 @@
       <Resource Include="Resources\menu\oneplayer_on.png" />
       <Resource Include="Resources\menu\twoplayer.png" />
       <Resource Include="Resources\menu\twoplayerON.png" />
+      <None Remove="Resources\images\heroes.png" />
+      <Resource Include="Resources\images\heroes.png" />
+      <None Remove="Resources\images\tablebackground.png" />
+      <Resource Include="Resources\images\tablebackground.png" />
     </ItemGroup>
 
 </Project>
