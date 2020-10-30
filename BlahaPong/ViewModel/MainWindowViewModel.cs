@@ -21,6 +21,8 @@ namespace BlahaPong.ViewModel
         private Canvas canv;
         private int tickCounter = 0;
         private bool isOnePlayerMode;
+        private List<Gift> gifts = new List<Gift>();
+        private Random random = new Random();
 
         private MainWindow _mainWindow;
         public MainWindowViewModel(Canvas canv, bool isOnePlayerMode,  TextBox ScoreSeparator, MainWindow mainWindow)
@@ -222,7 +224,21 @@ namespace BlahaPong.ViewModel
             ++tickCounter;
             if (tickCounter >= 40 * 10 || balls.Count == 0)
             {
+                if (random.Next(100) <= 80 && balls.Count != 0)
+                {
+                    AddGift();
+                }
                 AddBall();
+            }
+
+            foreach (var gift in gifts)
+            {
+                if (!gift.Move(WindowHeight, WindowWidth))
+                {
+                    canv.Children.Remove(gift.Rectangle);
+                    gifts.Remove(gift);
+                    break;
+                }
             }
             
             foreach (var ball in balls)
@@ -239,10 +255,36 @@ namespace BlahaPong.ViewModel
                     break;
                 }
             }
-            
+
+            foreach (var gift in gifts)
+            {
+                if (gift.IsActive)
+                {
+                    canv.Children.Remove(gift.Rectangle);
+                    Console.WriteLine(gift.ActiveTime);
+                    if (gift.ActiveTime >= 40 * 5)
+                    {
+                        gift.GiftDeactivation();
+                        gifts.Remove(gift);
+                        break;
+                    }
+                    if (!(gift.ActiveTime >= 40 * 5))
+                    {
+                        gift.ActiveTime++;
+                    }
+                }
+            }
+
             playerOne.Move(WindowHeight, WindowWidth);
             if (!isOnePlayerMode) playerTwo.Move(WindowHeight, WindowWidth);
            
+        }
+
+        private void AddGift()
+        {
+            var gift = new DoubleSizeGift(1, 30, 30, random.Next(50,750), 0, ref balls);
+            gifts.Add(gift);
+            canv.Children.Add(gift.Rectangle);
         }
 
         private void AddBall()
@@ -269,9 +311,16 @@ namespace BlahaPong.ViewModel
             {
                 canv.Children.Remove(ball.BallItem);
             }
+
+            foreach (var gift in gifts)
+            {
+                canv.Children.Remove(gift.Rectangle);
+            }
+            
+            gifts.Clear();
             balls.Clear();
+            Thread.Sleep(2000);
             tickCounter = 0;
-            Thread.Sleep(1000);
         }
 
     }

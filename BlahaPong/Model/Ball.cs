@@ -22,6 +22,7 @@ namespace BlahaPong.Model
 
         private Paddle playerTwo;
         private TextBox playerTwoTextBox;
+        public Paddle LastTouchedPlayer { get; set; }
         private List<int> xCoords = new List<int>(){-1, 0, 1};
         private List<int> yCoords = new List<int>(){-1, 1};
         private Random rand = new Random();
@@ -125,6 +126,7 @@ namespace BlahaPong.Model
                 && ((int) Canvas.GetLeft(player.Rectangle) == (int) Canvas.GetLeft(BallItem) - (int) BallItem.Width/2
                     || (int) Canvas.GetLeft(player.Rectangle) == (int) Canvas.GetLeft(BallItem) + (int) BallItem.Width/2))
             {
+                LastTouchedPlayer = player;
                 // Change the direction of the ball
                 yDirection = -yDirection;
                 // according to the player movement
